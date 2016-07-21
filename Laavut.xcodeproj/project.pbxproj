@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC0726751D40D6EF00BEEC07 /* Laavut-kodat.gpx in Resources */ = {isa = PBXBuildFile; fileRef = CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */; };
+		CC1C34A41D41207C00623F17 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C34A31D41207C00623F17 /* Reachability.swift */; };
 		CC2A73021D3F81A6004F7D0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2A73011D3F81A6004F7D0B /* AppDelegate.swift */; };
 		CC2A73041D3F81A6004F7D0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2A73031D3F81A6004F7D0B /* ViewController.swift */; };
 		CC2A73071D3F81A6004F7D0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC2A73051D3F81A6004F7D0B /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		176E1E5BAF1F474B7B2DF9F0 /* Pods_Laavut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Laavut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4426EE9DC636AB738F4A36B5 /* Pods-Laavut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laavut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Laavut/Pods-Laavut.debug.xcconfig"; sourceTree = "<group>"; };
 		CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Laavut-kodat.gpx"; path = "Laavut/Laavut-kodat.gpx"; sourceTree = "<group>"; };
+		CC1C34A31D41207C00623F17 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		CC2A72FE1D3F81A6004F7D0B /* Laavut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laavut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC2A73011D3F81A6004F7D0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC2A73031D3F81A6004F7D0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				CC2A730A1D3F81A6004F7D0B /* LaunchScreen.storyboard */,
 				CC2A730D1D3F81A6004F7D0B /* Info.plist */,
 				CCAE88391D40DE3600B9C08F /* Network.swift */,
+				CC1C34A31D41207C00623F17 /* Reachability.swift */,
 			);
 			path = Laavut;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			files = (
 				CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */,
 				CC2A73041D3F81A6004F7D0B /* ViewController.swift in Sources */,
+				CC1C34A41D41207C00623F17 /* Reachability.swift in Sources */,
 				CC2A73021D3F81A6004F7D0B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

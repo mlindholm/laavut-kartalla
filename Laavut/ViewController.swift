@@ -32,11 +32,26 @@ class Item: NSObject, MKAnnotation {
         self.title = name
         self.subtitle = xml["cmt"].text
     }
+
+    //MARK: - NSCoding -
+    required init(coder aDecoder: NSCoder) {
+        latitude = aDecoder.decodeObjectForKey("latitude") as! Double
+        longitude = aDecoder.decodeObjectForKey("longitude") as! Double
+        title = aDecoder.decodeObjectForKey("title") as? String
+        subtitle = aDecoder.decodeObjectForKey("subtitle") as? String
+    }
+
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(latitude, forKey: "latitude")
+        aCoder.encodeObject(longitude, forKey: "longitude")
+        aCoder.encodeObject(title, forKey: "title")
+        aCoder.encodeObject(subtitle, forKey: "subtitle")
+    }
 }
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-    var itemsArray = [Item]()
     let locationManager = CLLocationManager()
+    let defaults = NSUserDefaults.standardUserDefaults()
     var mapChangedFromUserInteraction = false
     var fetchAllLaavuTask: NSURLSessionTask?
 
@@ -66,10 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             mapView.setCenterCoordinate(coor, animated: false)
         }
 
-        fetchAllLaavuTask = Network.load() { [weak self] items in
-            self?.itemsArray = items
-            self?.mapView.addAnnotations(items)
-        }
+        fetchAllItems()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -80,6 +92,49 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewWillDisappear(animated: Bool) {
         mapView.showsUserLocation = false
     }
+
+    //MARK: - GXP
+
+    func archiveItems(items:[Item]) -> NSData {
+        let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(items as NSArray)
+        return archivedObject
+    }
+
+    func saveItems(items: [Item]) {
+        let archivedObject = archiveItems(items)
+        defaults.setObject(archivedObject, forKey: "annotations")
+    }
+
+    func retrieveItems() -> [Item]? {
+        if let unarchivedObject = NSUserDefaults.standardUserDefaults().objectForKey("annotations") as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Item]
+        }
+        return nil
+    }
+
+    func fetchAllItems() {
+        let reachability: Reachability
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+        } catch {
+            print("Unable to create Reachability")
+            return
+        }
+
+        if reachability.isReachable() {
+            print("is reachable")
+            fetchAllLaavuTask = Network.load() { [weak self] items in
+                self?.saveItems(items)
+                self?.mapView.addAnnotations(items)
+            }
+        } else {
+            print("not reachable")
+            if let items = retrieveItems() {
+                mapView.addAnnotations(items)
+            }
+        }
+    }
+
 
 
     //MARK: - Map
