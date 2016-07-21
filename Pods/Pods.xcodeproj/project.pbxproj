@@ -1,0 +1,751 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05F66E1F82274BEC9C9C43D8EA7E4012 /* Pods-Laavut-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5880B1482929812EAD15532759DE299 /* Pods-Laavut-dummy.m */; };
+		061F7B140B95B2BDB049270843F0EFE0 /* Pods-Laavut-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E0AB4BE16206DED6325DF04C8962BEA8 /* Pods-Laavut-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B037A83ED20E75F69659077A42B7BC3 /* CopyrightNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D213ED8BE3FE8106A1D526FC48D4CD5C /* CopyrightNotice.swift */; };
+		11473AF291E4DAC3D5C54860D2EA7782 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D25663A77E4D11F6F590B42CA49CFD /* Foundation.framework */; };
+		11C08E783B5E44D0EBCEDAB40ABDE979 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7686C4B6CCF22FA1E2E4694E698490 /* Point.swift */; };
+		12332C1A5D45172155309F4ECF23D277 /* String+DateParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F2FF0A2AA06DCEFCED9A1A822A6E71 /* String+DateParsing.swift */; };
+		15BB982966CF880BD937755A3D8920D6 /* GPXKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 76A8BC3A17DE97296FC7D4C32D7BEC70 /* GPXKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		210E940C0D133DB81850F719E5C17858 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2C7D0B07C1E4212DA1D0DFBC7C8363 /* Person.swift */; };
+		438D67D809EBC2AC950710622C6D48E5 /* AEXML-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8FA4B0075107985003954164E791B6 /* AEXML-dummy.m */; };
+		4CEE8F4346255C8A39DC1506C43A3B49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D25663A77E4D11F6F590B42CA49CFD /* Foundation.framework */; };
+		56C1E8ACA96760FE8CF9B7104CF52680 /* String+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AABE144C0794A08E82933BF67225239 /* String+Parsing.swift */; };
+		5B172CC109A81BB6BBB48DC469DFEAC9 /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31423AEF71E25FA4856CE055EF787D96 /* Bounds.swift */; };
+		76B455D62A6BB8A373EF12BABE0B8A9F /* AEXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0EF99C3D3A40281E142248A7345C8 /* AEXML.framework */; };
+		8EB5AAE14A60F0690AA269662A9B4F4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D25663A77E4D11F6F590B42CA49CFD /* Foundation.framework */; };
+		953DAF40A794C56D2B0010CBAC47ECA5 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E44EA4E4D590C72AB0791D476CD359 /* Track.swift */; };
+		A2290166BCC68C8664F4C915AAF47C4A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEB77B1C8BC67EA811475B08B0A6F0B /* File.swift */; };
+		B34367EF1C0015A2234F6C7FBF125196 /* AEXML-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F98F1875842C8036533D58B697E5332 /* AEXML-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B346A3F08D9632971D52237D73325D9D /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552221E94869AC94004863AB0B52A03 /* AEXML.swift */; };
+		C494F5D38D1F5D4CF0D9BCDF99D96A63 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EEB7C7D50F0BA0D90ED2D264258040 /* Parser.swift */; };
+		C587B76140CC7FC7ABA1D37EFFE79BB7 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50AE534A94CB69A26032827BC66C10C /* Route.swift */; };
+		CBF5B9DACFA264645AA1484DFC2D3696 /* TrackSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0B29C1EC0E521F4F8B80119161373D /* TrackSegment.swift */; };
+		D25D5C1835867BCEC534AD54996E672F /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7DB703ADCCF12CA3859AF4B1D0951 /* Operators.swift */; };
+		D57AEC83FCE65DFDD412BCB8D1BA3E2B /* GPXKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ABACE2EB798D82D27345C426764C4F /* GPXKit-dummy.m */; };
+		D9E2FF1B4328063F063BE71C4966E5F4 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DFBEF655F6D0792A7D1A6B5BF80C20 /* Link.swift */; };
+		E89AB39FF9B8AC4AF43F8F6B5E28E118 /* AEXMLElement+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB80FA5B6C5233182807D045886107A /* AEXMLElement+Parsing.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		12E16159F740F2FD37E723E923A6A049 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 135195BF1840044D4B789404627053B4;
+			remoteInfo = GPXKit;
+		};
+		C381FC8F652BDA9E95B1E87A48B4D616 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B9813D7E7E5E2BAC2903B82EC58E643;
+			remoteInfo = AEXML;
+		};
+		DC6ED071921CE9A0F29B14CEFAB72041 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B9813D7E7E5E2BAC2903B82EC58E643;
+			remoteInfo = AEXML;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		113E9333DCECC813DF7405ADB5AF7CF5 /* Pods_Laavut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Laavut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13F49673BE114C6C1422E97517842488 /* Pods-Laavut-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Laavut-acknowledgements.plist"; sourceTree = "<group>"; };
+		145C7CF93DEDA51F169747468E038AF5 /* AEXML.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AEXML.modulemap; sourceTree = "<group>"; };
+		159EC14367433542BBB9B1C61E67D118 /* GPXKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GPXKit.xcconfig; sourceTree = "<group>"; };
+		1A8FA4B0075107985003954164E791B6 /* AEXML-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AEXML-dummy.m"; sourceTree = "<group>"; };
+		31423AEF71E25FA4856CE055EF787D96 /* Bounds.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Bounds.swift; path = Sources/Models/Bounds.swift; sourceTree = "<group>"; };
+		38F2FF0A2AA06DCEFCED9A1A822A6E71 /* String+DateParsing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+DateParsing.swift"; path = "Sources/Parser/Extensions/String+DateParsing.swift"; sourceTree = "<group>"; };
+		3AABE144C0794A08E82933BF67225239 /* String+Parsing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Parsing.swift"; path = "Sources/Parser/Extensions/String+Parsing.swift"; sourceTree = "<group>"; };
+		3FCC324D47CDF67D4B50A23311C56714 /* Pods-Laavut.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Laavut.modulemap"; sourceTree = "<group>"; };
+		42DFBEF655F6D0792A7D1A6B5BF80C20 /* Link.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Link.swift; path = Sources/Models/Link.swift; sourceTree = "<group>"; };
+		46E44EA4E4D590C72AB0791D476CD359 /* Track.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Track.swift; path = Sources/Models/Track.swift; sourceTree = "<group>"; };
+		4A0B29C1EC0E521F4F8B80119161373D /* TrackSegment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TrackSegment.swift; path = Sources/Models/TrackSegment.swift; sourceTree = "<group>"; };
+		682FB85A665439D7B2402171A3B0B7D8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6887003700DA91A046EF0F63C31D38EF /* GPXKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = GPXKit.modulemap; sourceTree = "<group>"; };
+		76A8BC3A17DE97296FC7D4C32D7BEC70 /* GPXKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GPXKit-umbrella.h"; sourceTree = "<group>"; };
+		83C0EF99C3D3A40281E142248A7345C8 /* AEXML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AEXML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8552221E94869AC94004863AB0B52A03 /* AEXML.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEXML.swift; path = Sources/AEXML.swift; sourceTree = "<group>"; };
+		88ABACE2EB798D82D27345C426764C4F /* GPXKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GPXKit-dummy.m"; sourceTree = "<group>"; };
+		8F98F1875842C8036533D58B697E5332 /* AEXML-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AEXML-umbrella.h"; sourceTree = "<group>"; };
+		90CE95BB5C5FD94E5CA56E4197B2EAF8 /* AEXML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AEXML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95D25663A77E4D11F6F590B42CA49CFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		9637CEDBE5134927128BEAABD73009A8 /* Pods-Laavut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Laavut.debug.xcconfig"; sourceTree = "<group>"; };
+		97D4349DEBA81C36964775928CA61E11 /* Pods-Laavut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Laavut.release.xcconfig"; sourceTree = "<group>"; };
+		9FEB77B1C8BC67EA811475B08B0A6F0B /* File.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = File.swift; path = Sources/Models/File.swift; sourceTree = "<group>"; };
+		A86371D6A1F150FDE915B5CD1489D125 /* GPXKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GPXKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8EEB7C7D50F0BA0D90ED2D264258040 /* Parser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Sources/Parser/Parser.swift; sourceTree = "<group>"; };
+		B14853F7E5237358A678202767A17C00 /* Pods-Laavut-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Laavut-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B5880B1482929812EAD15532759DE299 /* Pods-Laavut-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Laavut-dummy.m"; sourceTree = "<group>"; };
+		BBC7DB703ADCCF12CA3859AF4B1D0951 /* Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Sources/Parser/Extensions/Operators.swift; sourceTree = "<group>"; };
+		C22EA4D508A92D45B6A8F6EC469DF16E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA2C7D0B07C1E4212DA1D0DFBC7C8363 /* Person.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Sources/Models/Person.swift; sourceTree = "<group>"; };
+		CAF8DD30D8FEA37B4A1B9AB96892B240 /* AEXML-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AEXML-prefix.pch"; sourceTree = "<group>"; };
+		D213ED8BE3FE8106A1D526FC48D4CD5C /* CopyrightNotice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CopyrightNotice.swift; path = Sources/Models/CopyrightNotice.swift; sourceTree = "<group>"; };
+		D50AE534A94CB69A26032827BC66C10C /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Route.swift; path = Sources/Models/Route.swift; sourceTree = "<group>"; };
+		D87304388CDEA4945AC44321C121B6EB /* AEXML.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AEXML.xcconfig; sourceTree = "<group>"; };
+		DB4A80309EFEDFB72C6EA1DAA9C8ECE4 /* Pods-Laavut-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Laavut-resources.sh"; sourceTree = "<group>"; };
+		E0AB4BE16206DED6325DF04C8962BEA8 /* Pods-Laavut-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Laavut-umbrella.h"; sourceTree = "<group>"; };
+		EC7686C4B6CCF22FA1E2E4694E698490 /* Point.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Point.swift; path = Sources/Models/Point.swift; sourceTree = "<group>"; };
+		ECB80FA5B6C5233182807D045886107A /* AEXMLElement+Parsing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AEXMLElement+Parsing.swift"; path = "Sources/Parser/Extensions/AEXMLElement+Parsing.swift"; sourceTree = "<group>"; };
+		F120B3B2302CD017D95FCF8396FD6511 /* GPXKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GPXKit-prefix.pch"; sourceTree = "<group>"; };
+		F1CF9E94EF2B3804FB646A4CF6EE9063 /* Pods-Laavut-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Laavut-frameworks.sh"; sourceTree = "<group>"; };
+		F4DD19E04E4C1E580EBEE131FAB737D2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF2E684E31ED473131595C3DD77C1213 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76B455D62A6BB8A373EF12BABE0B8A9F /* AEXML.framework in Frameworks */,
+				8EB5AAE14A60F0690AA269662A9B4F4E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7B7CC69AA055A498D8466FBB1F3B4C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11473AF291E4DAC3D5C54860D2EA7782 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3C5EF8922EBF22F501091606F0951F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CEE8F4346255C8A39DC1506C43A3B49 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05AA1760984ED58A3C1B970A4CA9D4A5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6887003700DA91A046EF0F63C31D38EF /* GPXKit.modulemap */,
+				159EC14367433542BBB9B1C61E67D118 /* GPXKit.xcconfig */,
+				88ABACE2EB798D82D27345C426764C4F /* GPXKit-dummy.m */,
+				F120B3B2302CD017D95FCF8396FD6511 /* GPXKit-prefix.pch */,
+				76A8BC3A17DE97296FC7D4C32D7BEC70 /* GPXKit-umbrella.h */,
+				682FB85A665439D7B2402171A3B0B7D8 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GPXKit";
+			sourceTree = "<group>";
+		};
+		060635CC233D53EB923CAEAD1A256097 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6EBADC92531A71E3ED5B7091612128E0 /* Pods-Laavut */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		1CC44699812F261C1FBCF628E9663B6E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				95D25663A77E4D11F6F590B42CA49CFD /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		2D51B2BD679CD2C3F06030DBFA3D866B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83C0EF99C3D3A40281E142248A7345C8 /* AEXML.framework */,
+				1CC44699812F261C1FBCF628E9663B6E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E78F20960FB1416698AA6E5D0B54DBF /* GPXKit */ = {
+			isa = PBXGroup;
+			children = (
+				ECB80FA5B6C5233182807D045886107A /* AEXMLElement+Parsing.swift */,
+				31423AEF71E25FA4856CE055EF787D96 /* Bounds.swift */,
+				D213ED8BE3FE8106A1D526FC48D4CD5C /* CopyrightNotice.swift */,
+				9FEB77B1C8BC67EA811475B08B0A6F0B /* File.swift */,
+				42DFBEF655F6D0792A7D1A6B5BF80C20 /* Link.swift */,
+				BBC7DB703ADCCF12CA3859AF4B1D0951 /* Operators.swift */,
+				A8EEB7C7D50F0BA0D90ED2D264258040 /* Parser.swift */,
+				CA2C7D0B07C1E4212DA1D0DFBC7C8363 /* Person.swift */,
+				EC7686C4B6CCF22FA1E2E4694E698490 /* Point.swift */,
+				D50AE534A94CB69A26032827BC66C10C /* Route.swift */,
+				38F2FF0A2AA06DCEFCED9A1A822A6E71 /* String+DateParsing.swift */,
+				3AABE144C0794A08E82933BF67225239 /* String+Parsing.swift */,
+				46E44EA4E4D590C72AB0791D476CD359 /* Track.swift */,
+				4A0B29C1EC0E521F4F8B80119161373D /* TrackSegment.swift */,
+				05AA1760984ED58A3C1B970A4CA9D4A5 /* Support Files */,
+			);
+			path = GPXKit;
+			sourceTree = "<group>";
+		};
+		6427699945A0E816326542F452904A4A /* AEXML */ = {
+			isa = PBXGroup;
+			children = (
+				8552221E94869AC94004863AB0B52A03 /* AEXML.swift */,
+				E91BA57879E77841945FF96F4F01B95E /* Support Files */,
+			);
+			path = AEXML;
+			sourceTree = "<group>";
+		};
+		6EBADC92531A71E3ED5B7091612128E0 /* Pods-Laavut */ = {
+			isa = PBXGroup;
+			children = (
+				F4DD19E04E4C1E580EBEE131FAB737D2 /* Info.plist */,
+				3FCC324D47CDF67D4B50A23311C56714 /* Pods-Laavut.modulemap */,
+				B14853F7E5237358A678202767A17C00 /* Pods-Laavut-acknowledgements.markdown */,
+				13F49673BE114C6C1422E97517842488 /* Pods-Laavut-acknowledgements.plist */,
+				B5880B1482929812EAD15532759DE299 /* Pods-Laavut-dummy.m */,
+				F1CF9E94EF2B3804FB646A4CF6EE9063 /* Pods-Laavut-frameworks.sh */,
+				DB4A80309EFEDFB72C6EA1DAA9C8ECE4 /* Pods-Laavut-resources.sh */,
+				E0AB4BE16206DED6325DF04C8962BEA8 /* Pods-Laavut-umbrella.h */,
+				9637CEDBE5134927128BEAABD73009A8 /* Pods-Laavut.debug.xcconfig */,
+				97D4349DEBA81C36964775928CA61E11 /* Pods-Laavut.release.xcconfig */,
+			);
+			name = "Pods-Laavut";
+			path = "Target Support Files/Pods-Laavut";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				2D51B2BD679CD2C3F06030DBFA3D866B /* Frameworks */,
+				F0AEAFBDFA0E8C767741E516088E2F07 /* Pods */,
+				A70F30EA4C8A5612E6FC7C98BE5D5733 /* Products */,
+				060635CC233D53EB923CAEAD1A256097 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		A70F30EA4C8A5612E6FC7C98BE5D5733 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90CE95BB5C5FD94E5CA56E4197B2EAF8 /* AEXML.framework */,
+				A86371D6A1F150FDE915B5CD1489D125 /* GPXKit.framework */,
+				113E9333DCECC813DF7405ADB5AF7CF5 /* Pods_Laavut.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E91BA57879E77841945FF96F4F01B95E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				145C7CF93DEDA51F169747468E038AF5 /* AEXML.modulemap */,
+				D87304388CDEA4945AC44321C121B6EB /* AEXML.xcconfig */,
+				1A8FA4B0075107985003954164E791B6 /* AEXML-dummy.m */,
+				CAF8DD30D8FEA37B4A1B9AB96892B240 /* AEXML-prefix.pch */,
+				8F98F1875842C8036533D58B697E5332 /* AEXML-umbrella.h */,
+				C22EA4D508A92D45B6A8F6EC469DF16E /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AEXML";
+			sourceTree = "<group>";
+		};
+		F0AEAFBDFA0E8C767741E516088E2F07 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6427699945A0E816326542F452904A4A /* AEXML */,
+				2E78F20960FB1416698AA6E5D0B54DBF /* GPXKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		48AEA27116225B71FAED7900D193A195 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B34367EF1C0015A2234F6C7FBF125196 /* AEXML-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F260A880B74A3DE36939EC86011F18AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				061F7B140B95B2BDB049270843F0EFE0 /* Pods-Laavut-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA818AEAF15D04F8CA652D4AABE04FF4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15BB982966CF880BD937755A3D8920D6 /* GPXKit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		135195BF1840044D4B789404627053B4 /* GPXKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 068A418DAF4BE2BE439D27E1C99E0B16 /* Build configuration list for PBXNativeTarget "GPXKit" */;
+			buildPhases = (
+				73EE0ECF79E1E075E9894D47DC4514C8 /* Sources */,
+				BF2E684E31ED473131595C3DD77C1213 /* Frameworks */,
+				FA818AEAF15D04F8CA652D4AABE04FF4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				416BB74FEC12DFD4CDB2797D4B2FECD8 /* PBXTargetDependency */,
+			);
+			name = GPXKit;
+			productName = GPXKit;
+			productReference = A86371D6A1F150FDE915B5CD1489D125 /* GPXKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6B9813D7E7E5E2BAC2903B82EC58E643 /* AEXML */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB99F68354F647FD7968E39CE9540528 /* Build configuration list for PBXNativeTarget "AEXML" */;
+			buildPhases = (
+				A1EAE2BEF79D977B3843811E59BA2AFD /* Sources */,
+				D7B7CC69AA055A498D8466FBB1F3B4C8 /* Frameworks */,
+				48AEA27116225B71FAED7900D193A195 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AEXML;
+			productName = AEXML;
+			productReference = 90CE95BB5C5FD94E5CA56E4197B2EAF8 /* AEXML.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		98C791C9D31DA57BD24FB8B2479B9757 /* Pods-Laavut */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95EE7F2FC22DF8B1867D9CAC3F352C2B /* Build configuration list for PBXNativeTarget "Pods-Laavut" */;
+			buildPhases = (
+				ED1471737B611845137C54EF8F5D1312 /* Sources */,
+				F3C5EF8922EBF22F501091606F0951F0 /* Frameworks */,
+				F260A880B74A3DE36939EC86011F18AF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4F8548589EEEA79A8178468ED5D3F6D /* PBXTargetDependency */,
+				D86E5C00055C9F5CBEB4D8AA35CBA709 /* PBXTargetDependency */,
+			);
+			name = "Pods-Laavut";
+			productName = "Pods-Laavut";
+			productReference = 113E9333DCECC813DF7405ADB5AF7CF5 /* Pods_Laavut.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = A70F30EA4C8A5612E6FC7C98BE5D5733 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6B9813D7E7E5E2BAC2903B82EC58E643 /* AEXML */,
+				135195BF1840044D4B789404627053B4 /* GPXKit */,
+				98C791C9D31DA57BD24FB8B2479B9757 /* Pods-Laavut */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73EE0ECF79E1E075E9894D47DC4514C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E89AB39FF9B8AC4AF43F8F6B5E28E118 /* AEXMLElement+Parsing.swift in Sources */,
+				5B172CC109A81BB6BBB48DC469DFEAC9 /* Bounds.swift in Sources */,
+				0B037A83ED20E75F69659077A42B7BC3 /* CopyrightNotice.swift in Sources */,
+				A2290166BCC68C8664F4C915AAF47C4A /* File.swift in Sources */,
+				D57AEC83FCE65DFDD412BCB8D1BA3E2B /* GPXKit-dummy.m in Sources */,
+				D9E2FF1B4328063F063BE71C4966E5F4 /* Link.swift in Sources */,
+				D25D5C1835867BCEC534AD54996E672F /* Operators.swift in Sources */,
+				C494F5D38D1F5D4CF0D9BCDF99D96A63 /* Parser.swift in Sources */,
+				210E940C0D133DB81850F719E5C17858 /* Person.swift in Sources */,
+				11C08E783B5E44D0EBCEDAB40ABDE979 /* Point.swift in Sources */,
+				C587B76140CC7FC7ABA1D37EFFE79BB7 /* Route.swift in Sources */,
+				12332C1A5D45172155309F4ECF23D277 /* String+DateParsing.swift in Sources */,
+				56C1E8ACA96760FE8CF9B7104CF52680 /* String+Parsing.swift in Sources */,
+				953DAF40A794C56D2B0010CBAC47ECA5 /* Track.swift in Sources */,
+				CBF5B9DACFA264645AA1484DFC2D3696 /* TrackSegment.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1EAE2BEF79D977B3843811E59BA2AFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				438D67D809EBC2AC950710622C6D48E5 /* AEXML-dummy.m in Sources */,
+				B346A3F08D9632971D52237D73325D9D /* AEXML.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED1471737B611845137C54EF8F5D1312 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05F66E1F82274BEC9C9C43D8EA7E4012 /* Pods-Laavut-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		416BB74FEC12DFD4CDB2797D4B2FECD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AEXML;
+			target = 6B9813D7E7E5E2BAC2903B82EC58E643 /* AEXML */;
+			targetProxy = DC6ED071921CE9A0F29B14CEFAB72041 /* PBXContainerItemProxy */;
+		};
+		D86E5C00055C9F5CBEB4D8AA35CBA709 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPXKit;
+			target = 135195BF1840044D4B789404627053B4 /* GPXKit */;
+			targetProxy = 12E16159F740F2FD37E723E923A6A049 /* PBXContainerItemProxy */;
+		};
+		F4F8548589EEEA79A8178468ED5D3F6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AEXML;
+			target = 6B9813D7E7E5E2BAC2903B82EC58E643 /* AEXML */;
+			targetProxy = C381FC8F652BDA9E95B1E87A48B4D616 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		034014829C1E4434983CF3A690C12017 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		0ECB3F9CC42861379399DAA1870D59BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 159EC14367433542BBB9B1C61E67D118 /* GPXKit.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/GPXKit/GPXKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GPXKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GPXKit/GPXKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = GPXKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		42C634B2B6263B3747E86AD07F3DD05A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D87304388CDEA4945AC44321C121B6EB /* AEXML.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/AEXML/AEXML-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AEXML/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AEXML/AEXML.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = AEXML;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		693345786F7FA8C3F26ECB7B541A1BCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9637CEDBE5134927128BEAABD73009A8 /* Pods-Laavut.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Laavut/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Laavut/Pods-Laavut.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Laavut;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		830B363239CC75490DD499453EEE2587 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 159EC14367433542BBB9B1C61E67D118 /* GPXKit.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/GPXKit/GPXKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GPXKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GPXKit/GPXKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = GPXKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C7E474A03CAE21F1CB6046E7344C59BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0084123ADBF749C21CB8A096FE25109 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D87304388CDEA4945AC44321C121B6EB /* AEXML.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/AEXML/AEXML-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AEXML/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AEXML/AEXML.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = AEXML;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D89D162EF3210FC9DB8EB95B5A071BDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97D4349DEBA81C36964775928CA61E11 /* Pods-Laavut.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Laavut/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Laavut/Pods-Laavut.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Laavut;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		068A418DAF4BE2BE439D27E1C99E0B16 /* Build configuration list for PBXNativeTarget "GPXKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0ECB3F9CC42861379399DAA1870D59BF /* Debug */,
+				830B363239CC75490DD499453EEE2587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				034014829C1E4434983CF3A690C12017 /* Debug */,
+				C7E474A03CAE21F1CB6046E7344C59BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95EE7F2FC22DF8B1867D9CAC3F352C2B /* Build configuration list for PBXNativeTarget "Pods-Laavut" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				693345786F7FA8C3F26ECB7B541A1BCB /* Debug */,
+				D89D162EF3210FC9DB8EB95B5A071BDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB99F68354F647FD7968E39CE9540528 /* Build configuration list for PBXNativeTarget "AEXML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0084123ADBF749C21CB8A096FE25109 /* Debug */,
+				42C634B2B6263B3747E86AD07F3DD05A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
