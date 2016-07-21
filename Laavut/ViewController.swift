@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import SwiftyXMLParser
 
-class Item: NSObject, MKAnnotation {
+class Location: NSObject, MKAnnotation {
     let title: String?
     let subtitle: String?
     let latitude: Double
@@ -81,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             mapView.setCenterCoordinate(coor, animated: false)
         }
 
-        fetchAllItems()
+        fetchAllLocations()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -95,24 +95,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     //MARK: - GXP
 
-    func archiveItems(items:[Item]) -> NSData {
-        let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(items as NSArray)
+    func archiveLocations(locations:[Location]) -> NSData {
+        let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations as NSArray)
         return archivedObject
     }
 
-    func saveItems(items: [Item]) {
-        let archivedObject = archiveItems(items)
+    func saveLocations(locations: [Location]) {
+        let archivedObject = archiveLocations(locations)
         defaults.setObject(archivedObject, forKey: "annotations")
     }
 
-    func retrieveItems() -> [Item]? {
+    func retrieveLocations() -> [Location]? {
         if let unarchivedObject = NSUserDefaults.standardUserDefaults().objectForKey("annotations") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Item]
+            return NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location]
         }
         return nil
     }
 
-    func fetchAllItems() {
+    func fetchAllLocations() {
         let reachability: Reachability
         do {
             reachability = try Reachability.reachabilityForInternetConnection()
@@ -123,14 +123,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
         if reachability.isReachable() {
             print("is reachable")
-            fetchAllLaavuTask = Network.load() { [weak self] items in
-                self?.saveItems(items)
-                self?.mapView.addAnnotations(items)
+            fetchAllLaavuTask = Network.load() { [weak self] locations in
+                self?.saveLocations(locations)
+                self?.mapView.addAnnotations(locations)
             }
         } else {
             print("not reachable")
-            if let items = retrieveItems() {
-                mapView.addAnnotations(items)
+            if let locations = retrieveLocations() {
+                mapView.addAnnotations(locations)
             }
         }
     }

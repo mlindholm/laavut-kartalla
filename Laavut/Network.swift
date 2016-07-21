@@ -11,7 +11,7 @@ import SwiftyXMLParser
 
 struct Network {
 
-    static func load(completion: ([Item]) -> Void) -> NSURLSessionTask? {
+    static func load(completion: ([Location]) -> Void) -> NSURLSessionTask? {
         let urlString = NSURL(string: "http://laavu.org/lataa.php?paikkakunta=kaikki")
         let request = NSURLRequest(URL: urlString!)
 
@@ -40,18 +40,18 @@ struct Network {
         return task
     }
 
-    static func asd(data: NSData) -> [Item] {
-        var itemsArray = [Item]()
+    static func asd(data: NSData) -> [Location] {
+        var locationsArray = [Location]()
         do {
             let xmlObject = try! XML.parse(data)
-            for element in xmlObject["gpx", "wpt"] {
-                guard let item = Item(xml: element) else { continue }
-                itemsArray.append(item)
+            for item in xmlObject["gpx", "wpt"] {
+                guard let location = Location(xml: item) else { continue }
+                locationsArray.append(location)
             }
         } catch {
             debugPrint("Error parsing tags JSON")
         }
-        return itemsArray
+        return locationsArray
 
     }
 }
