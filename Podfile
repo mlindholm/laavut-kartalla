@@ -7,5 +7,6 @@ target 'Laavut' do
 
   # Pods for Laavut
     pod 'GPXKit', '~> 1.1'
+    pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
 
 end

@@ -12,7 +12,7 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let locationManager = CLLocationManager()
-    private var mapChangedFromUserInteraction = false
+    var mapChangedFromUserInteraction = false
 
     @IBOutlet var mapView: MKMapView!
 
@@ -29,7 +29,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
-//            locationManager.requestLocation()
         }
 
         mapView.delegate = self
@@ -40,6 +39,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if let coor = mapView.userLocation.location?.coordinate{
             mapView.setCenterCoordinate(coor, animated: false)
         }
+        
+        Downloader.load("http://laavu.org/lataa.php?paikkakunta=kaikki")
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -51,9 +52,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.showsUserLocation = false
     }
 
+    //MARK: - GPX
+    
+
     //MARK: - Map
 
-    private func mapViewRegionDidChangeFromUserInteraction() -> Bool {
+    func mapViewRegionDidChangeFromUserInteraction() -> Bool {
         let view = self.mapView.subviews[0]
         //  Look through gesture recognizers to determine whether this region change is from user interaction
         if let gestureRecognizers = view.gestureRecognizers {

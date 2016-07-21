@@ -13,6 +13,7 @@
 		CC2A73071D3F81A6004F7D0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC2A73051D3F81A6004F7D0B /* Main.storyboard */; };
 		CC2A73091D3F81A6004F7D0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC2A73081D3F81A6004F7D0B /* Assets.xcassets */; };
 		CC2A730C1D3F81A6004F7D0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC2A730A1D3F81A6004F7D0B /* LaunchScreen.storyboard */; };
+		CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAE88391D40DE3600B9C08F /* Network.swift */; };
 		FD1BDD30FDF382978D3065DA /* Pods_Laavut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176E1E5BAF1F474B7B2DF9F0 /* Pods_Laavut.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		CC2A73081D3F81A6004F7D0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC2A730B1D3F81A6004F7D0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC2A730D1D3F81A6004F7D0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCAE88391D40DE3600B9C08F /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				CC2A73081D3F81A6004F7D0B /* Assets.xcassets */,
 				CC2A730A1D3F81A6004F7D0B /* LaunchScreen.storyboard */,
 				CC2A730D1D3F81A6004F7D0B /* Info.plist */,
+				CCAE88391D40DE3600B9C08F /* Network.swift */,
 			);
 			path = Laavut;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */,
 				CC2A73041D3F81A6004F7D0B /* ViewController.swift in Sources */,
 				CC2A73021D3F81A6004F7D0B /* AppDelegate.swift in Sources */,
 			);
