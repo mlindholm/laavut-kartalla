@@ -122,13 +122,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
 
         if reachability.isReachable() {
-            print("is reachable")
             fetchAllLaavuTask = Network.load() { [weak self] locations in
                 self?.saveLocations(locations)
                 self?.mapView.addAnnotations(locations)
             }
         } else {
-            print("not reachable")
             if let locations = retrieveLocations() {
                 mapView.addAnnotations(locations)
             }

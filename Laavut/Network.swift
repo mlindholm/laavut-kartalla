@@ -31,7 +31,7 @@ struct Network {
                     return
                 }
 
-                let optionalLaavu = asd(data)
+                let optionalLaavu = parse(data)
                 completion(optionalLaavu)
             })
         })
@@ -40,7 +40,7 @@ struct Network {
         return task
     }
 
-    static func asd(data: NSData) -> [Location] {
+    static func parse(data: NSData) -> [Location] {
         var locationsArray = [Location]()
         let xmlObject = try! XML.parse(data)
 
