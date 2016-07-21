@@ -52,6 +52,7 @@ class Location: NSObject, MKAnnotation {
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let locationManager = CLLocationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
+    let initialLocation = CLLocation(latitude: 60.1699, longitude: 24.9384)
     var mapChangedFromUserInteraction = false
     var fetchAllLaavuTask: NSURLSessionTask?
 
@@ -61,6 +62,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        centerMapOnLocation(initialLocation)
 
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
@@ -78,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.scrollEnabled = true
 
         if let coor = mapView.userLocation.location?.coordinate{
-            mapView.setCenterCoordinate(coor, animated: false)
+            mapView.setCenterCoordinate(coor, animated: true)
         }
 
         checkForUpdates()
@@ -175,11 +178,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
 
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 5000, 5000)
+        mapView.setRegion(coordinateRegion, animated: false)
+    }
+
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
-            self.mapView.setRegion(region, animated: false)
+            self.mapView.setRegion(region, animated: true)
         }
     }
 }
