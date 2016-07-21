@@ -81,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.scrollEnabled = true
 
         if let coor = mapView.userLocation.location?.coordinate{
-            mapView.setCenterCoordinate(coor, animated: true)
+            mapView.setCenterCoordinate(coor, animated: false)
         }
 
         checkForUpdates()
@@ -179,7 +179,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 5000, 5000)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 10000, 10000)
         mapView.setRegion(coordinateRegion, animated: false)
     }
 
@@ -187,7 +187,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if let location = locations.last {
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
-            self.mapView.setRegion(region, animated: true)
+            self.mapView.setRegion(region, animated: false)
         }
     }
 }
