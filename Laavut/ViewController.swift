@@ -53,6 +53,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     let locationManager = CLLocationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
     let initialLocation = CLLocation(latitude: 60.1699, longitude: 24.9384)
+    let regionRadius: CLLocationDistance = 1000
     var mapChangedFromUserInteraction = false
     var fetchAllLaavuTask: NSURLSessionTask?
 
@@ -179,7 +180,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 10000, 10000)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 100.0, regionRadius * 100.0)
         mapView.setRegion(coordinateRegion, animated: false)
     }
 
