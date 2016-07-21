@@ -7,20 +7,49 @@
 //
 
 import Foundation
+import SwiftyXMLParser
 
-class Downloader {
-    class func load(url: String) {
-        guard let urlString = NSURL(string: url) else { return }
-        let request = NSURLRequest(URL: urlString)
+struct Network {
+
+    static func load(completion: ([Item]) -> Void) -> NSURLSessionTask? {
+        let urlString = NSURL(string: "http://laavu.org/lataa.php?paikkakunta=kaikki")
+        let request = NSURLRequest(URL: urlString!)
 
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-            guard let gpx = data else { return }
             let statusCode = (response as? NSHTTPURLResponse)?.statusCode
-            xml = try! XML.parse(data) // -> XML.Accessor
-            print(xml)
+            print(statusCode)
+
+            if let err = error {
+                print(err.localizedDescription)
+                completion([])
+                return
+            }
+
+            guard let data = data where error == nil else {
+                completion([])
+                return
+            }
+
+            let optionalLaavu = asd(data)
+            completion(optionalLaavu)
         })
         
-        // do whatever you need with the task e.g. run
         task.resume()
+        return task
+    }
+
+    static func asd(data: NSData) -> [Item] {
+        var itemsArray = [Item]()
+        do {
+            let xmlObject = try! XML.parse(data)
+            for element in xmlObject["gpx", "wpt"] {
+                guard let item = Item(xml: element) else { continue }
+                itemsArray.append(item)
+            }
+        } catch {
+            debugPrint("Error parsing tags JSON")
+        }
+        return itemsArray
+
     }
 }

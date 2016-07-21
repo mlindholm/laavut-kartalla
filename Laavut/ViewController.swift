@@ -9,10 +9,36 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SwiftyXMLParser
+
+class Item: NSObject, MKAnnotation {
+    let title: String?
+    let subtitle: String?
+    let latitude: Double
+    let longitude: Double
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+
+    init?(xml: XML.Accessor) {
+        guard let lat = xml.attributes["lat"],
+            let lon = xml.attributes["lon"],
+            let name = xml["name"].text else {
+                return nil
+        }
+
+        self.latitude = Double(lat)!
+        self.longitude = Double(lon)!
+        self.title = name
+        self.subtitle = xml["cmt"].text
+    }
+}
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    var itemsArray = [Item]()
     let locationManager = CLLocationManager()
     var mapChangedFromUserInteraction = false
+    var fetchAllLaavuTask: NSURLSessionTask?
 
     @IBOutlet var mapView: MKMapView!
 
@@ -39,8 +65,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if let coor = mapView.userLocation.location?.coordinate{
             mapView.setCenterCoordinate(coor, animated: false)
         }
-        
-        Downloader.load("http://laavu.org/lataa.php?paikkakunta=kaikki")
+
+        fetchAllLaavuTask = Network.load() { [weak self] items in
+            self?.itemsArray = items
+            self?.mapView.addAnnotations(items)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -52,8 +81,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.showsUserLocation = false
     }
 
-    //MARK: - GPX
-    
 
     //MARK: - Map
 
