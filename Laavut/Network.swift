@@ -20,8 +20,8 @@ struct Network {
                 let statusCode = (response as? NSHTTPURLResponse)?.statusCode
                 print(statusCode)
 
-                if let err = error {
-                    print(err.localizedDescription)
+                if let error = error {
+                    print(error.localizedDescription)
                     completion([])
                     return
                 }
@@ -42,16 +42,13 @@ struct Network {
 
     static func asd(data: NSData) -> [Location] {
         var locationsArray = [Location]()
-        do {
-            let xmlObject = try! XML.parse(data)
-            for item in xmlObject["gpx", "wpt"] {
-                guard let location = Location(xml: item) else { continue }
-                locationsArray.append(location)
-            }
-        } catch {
-            debugPrint("Error parsing tags JSON")
-        }
-        return locationsArray
+        let xmlObject = try! XML.parse(data)
 
+        for item in xmlObject["gpx", "wpt"] {
+            guard let location = Location(xml: item) else { continue }
+            locationsArray.append(location)
+        }
+
+        return locationsArray
     }
 }
