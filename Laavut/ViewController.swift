@@ -81,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             mapView.setCenterCoordinate(coor, animated: false)
         }
 
-        fetchAllLocations()
+        checkForUpdates()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -93,7 +93,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.showsUserLocation = false
     }
 
-    //MARK: - GXP
+    //MARK: - Locations
 
     func archiveLocations(locations:[Location]) -> NSData {
         let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations as NSArray)
@@ -103,6 +103,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func saveLocations(locations: [Location]) {
         let archivedObject = archiveLocations(locations)
         defaults.setObject(archivedObject, forKey: "annotations")
+        defaults.setObject(NSDate(), forKey: "saveLocationsDate")
     }
 
     func retrieveLocations() -> [Location]? {
@@ -114,6 +115,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     func fetchAllLocations() {
         let reachability: Reachability
+
         do {
             reachability = try Reachability.reachabilityForInternetConnection()
         } catch {
@@ -126,13 +128,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 self?.saveLocations(locations)
                 self?.mapView.addAnnotations(locations)
             }
-        } else {
-            if let locations = retrieveLocations() {
-                mapView.addAnnotations(locations)
-            }
         }
     }
 
+    func checkForUpdates() {
+        let saveLocationsDate = defaults.objectForKey("saveLocationsDate") as? NSDate
+        let daysAgo = saveLocationsDate?.daysAgo
+
+        switch daysAgo {
+        case nil:
+            print("no prior fetch, fetching…")
+            fetchAllLocations()
+        case _ where daysAgo >= 1:
+            print("old fetch, fetching…")
+            fetchAllLocations()
+        case _ where daysAgo == 0:
+            if let locations = retrieveLocations() {
+                print("printing…")
+                self.mapView.addAnnotations(locations)
+            }
+        default:
+            fatalError()
+        }
+    }
 
 
     //MARK: - Map

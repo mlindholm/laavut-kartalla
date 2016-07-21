@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADEF3B71D4151440013A80F /* NSDateExtension.swift */; };
 		CC0726751D40D6EF00BEEC07 /* Laavut-kodat.gpx in Resources */ = {isa = PBXBuildFile; fileRef = CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */; };
 		CC1C34A41D41207C00623F17 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C34A31D41207C00623F17 /* Reachability.swift */; };
 		CC2A73021D3F81A6004F7D0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2A73011D3F81A6004F7D0B /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 		16BE579783A84A26E136C755 /* Pods-Laavut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laavut.release.xcconfig"; path = "Pods/Target Support Files/Pods-Laavut/Pods-Laavut.release.xcconfig"; sourceTree = "<group>"; };
 		176E1E5BAF1F474B7B2DF9F0 /* Pods_Laavut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Laavut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4426EE9DC636AB738F4A36B5 /* Pods-Laavut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laavut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Laavut/Pods-Laavut.debug.xcconfig"; sourceTree = "<group>"; };
+		4ADEF3B71D4151440013A80F /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Laavut-kodat.gpx"; path = "Laavut/Laavut-kodat.gpx"; sourceTree = "<group>"; };
 		CC1C34A31D41207C00623F17 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		CC2A72FE1D3F81A6004F7D0B /* Laavut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laavut.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,7 @@
 				CC2A730D1D3F81A6004F7D0B /* Info.plist */,
 				CCAE88391D40DE3600B9C08F /* Network.swift */,
 				CC1C34A31D41207C00623F17 /* Reachability.swift */,
+				4ADEF3B71D4151440013A80F /* NSDateExtension.swift */,
 			);
 			path = Laavut;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */,
+				4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */,
 				CC2A73041D3F81A6004F7D0B /* ViewController.swift in Sources */,
 				CC1C34A41D41207C00623F17 /* Reachability.swift in Sources */,
 				CC2A73021D3F81A6004F7D0B /* AppDelegate.swift in Sources */,
