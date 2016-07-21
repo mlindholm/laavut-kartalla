@@ -16,22 +16,24 @@ struct Network {
         let request = NSURLRequest(URL: urlString!)
 
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-            let statusCode = (response as? NSHTTPURLResponse)?.statusCode
-            print(statusCode)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let statusCode = (response as? NSHTTPURLResponse)?.statusCode
+                print(statusCode)
 
-            if let err = error {
-                print(err.localizedDescription)
-                completion([])
-                return
-            }
+                if let err = error {
+                    print(err.localizedDescription)
+                    completion([])
+                    return
+                }
 
-            guard let data = data where error == nil else {
-                completion([])
-                return
-            }
+                guard let data = data where error == nil else {
+                    completion([])
+                    return
+                }
 
-            let optionalLaavu = asd(data)
-            completion(optionalLaavu)
+                let optionalLaavu = asd(data)
+                completion(optionalLaavu)
+            })
         })
         
         task.resume()
