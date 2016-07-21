@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -36,6 +38,94 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="416" y="462"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HHx-cK-ish">
+            <objects>
+                <viewController id="O5x-sF-rEL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Em1-Ia-CT8"/>
+                        <viewControllerLayoutGuide type="bottom" id="ufJ-MT-qPT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3jM-su-vh1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2yy-ko-FAa">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2yy-ko-FAa" secondAttribute="height" multiplier="3:1" id="xKL-Ds-cGK"/>
+                                </constraints>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sJR-1f-vk4">
+                                <rect key="frame" x="20" y="216" width="560" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nimi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGR-n1-C9C">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tyyppi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKE-OX-Tmn">
+                                        <rect key="frame" x="0.0" y="24" width="560" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01.01.2016" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzQ-ih-vmc">
+                                        <rect key="frame" x="0.0" y="46" width="560" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kuvaus" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRo-WN-bQY">
+                                        <rect key="frame" x="0.0" y="68" width="560" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N58-3s-0cg">
+                                <rect key="frame" x="20" y="320" width="560" height="104"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dfg-ic-ozt">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="bME-Q9-R4c"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Lisää suosikkeihin"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2n-Gn-zfg">
+                                        <rect key="frame" x="0.0" y="56" width="560" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="7bi-Ui-fcP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Reittiohjeet"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="N58-3s-0cg" firstAttribute="leading" secondItem="3jM-su-vh1" secondAttribute="leadingMargin" id="2Sd-c2-Ph5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sJR-1f-vk4" secondAttribute="trailing" id="Iit-Kt-zhC"/>
+                            <constraint firstItem="N58-3s-0cg" firstAttribute="top" secondItem="sJR-1f-vk4" secondAttribute="bottom" constant="16" id="Pye-ib-4ro"/>
+                            <constraint firstAttribute="trailing" secondItem="2yy-ko-FAa" secondAttribute="trailing" id="R5h-me-4YB"/>
+                            <constraint firstItem="2yy-ko-FAa" firstAttribute="leading" secondItem="3jM-su-vh1" secondAttribute="leading" id="RQZ-Yk-DP6"/>
+                            <constraint firstItem="2yy-ko-FAa" firstAttribute="top" secondItem="3jM-su-vh1" secondAttribute="top" id="az5-1d-j7o"/>
+                            <constraint firstItem="ufJ-MT-qPT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="N58-3s-0cg" secondAttribute="bottom" constant="8" id="cMm-Gv-1hK"/>
+                            <constraint firstItem="sJR-1f-vk4" firstAttribute="leading" secondItem="3jM-su-vh1" secondAttribute="leadingMargin" id="ggD-Fj-KZT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N58-3s-0cg" secondAttribute="trailing" id="kMA-JV-nFr"/>
+                            <constraint firstItem="sJR-1f-vk4" firstAttribute="top" secondItem="2yy-ko-FAa" secondAttribute="bottom" constant="16" id="q4f-gy-mBb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L7N-cj-hfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1176" y="462"/>
         </scene>
     </scenes>
 </document>
