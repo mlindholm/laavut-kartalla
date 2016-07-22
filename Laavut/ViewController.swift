@@ -17,35 +17,35 @@ class Location: NSObject, MKAnnotation, MKMapViewDelegate {
     let title: String?
     let subtitle: String?
     let time: NSDate?
-    let type: String?
+    let comment: String?
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
     init?(xml: XML.Accessor) {
-        guard let lat = xml.attributes["lat"],
-            let lon = xml.attributes["lon"],
-            let name = xml["name"].text,
+        guard let latitude = xml.attributes["lat"],
+            let longitude = xml.attributes["lon"],
+            let title = xml["name"].text,
             let time = xml["time"].text?.stringToDate(),
-            let type = xml["sym"].text else {
+            let subtitle = xml["sym"].text else {
                 return nil
         }
 
-        switch type {
+        switch subtitle {
         case "Campground":
-            self.type = "Kota tien varressa"
+            self.subtitle = "Kota tien varressa"
         case "Lodge":
-            self.type = "Laavu maastossa"
+            self.subtitle = "Laavu maastossa"
         case "Picnic Area":
-            self.type = "Laavu tien varressa"
+            self.subtitle = "Laavu tien varressa"
         default:
-            self.type = nil
+            self.subtitle = nil
         }
 
-        self.latitude = Double(lat)!
-        self.longitude = Double(lon)!
-        self.title = name
-        self.subtitle = xml["cmt"].text
+        self.latitude = Double(latitude)!
+        self.longitude = Double(longitude)!
+        self.title = title
+        self.comment = xml["cmt"].text
         self.time = time
     }
 
@@ -56,7 +56,7 @@ class Location: NSObject, MKAnnotation, MKMapViewDelegate {
         title = aDecoder.decodeObjectForKey("title") as? String
         subtitle = aDecoder.decodeObjectForKey("subtitle") as? String
         time = aDecoder.decodeObjectForKey("time") as? NSDate
-        type = aDecoder.decodeObjectForKey("type") as? String
+        comment = aDecoder.decodeObjectForKey("comment") as? String
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -65,7 +65,7 @@ class Location: NSObject, MKAnnotation, MKMapViewDelegate {
         aCoder.encodeObject(title, forKey: "title")
         aCoder.encodeObject(subtitle, forKey: "subtitle")
         aCoder.encodeObject(time, forKey: "time")
-        aCoder.encodeObject(type, forKey: "type")
+        aCoder.encodeObject(comment, forKey: "comment")
     }
 }
 

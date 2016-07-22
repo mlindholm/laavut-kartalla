@@ -16,8 +16,8 @@ class DetailViewController: UIViewController {
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var commentLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var typeLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
 
     override func viewDidLoad() {
@@ -31,14 +31,14 @@ class DetailViewController: UIViewController {
         centerMapOnLocation(location)
 
         titleLabel.text = location.title
-        typeLabel.text = location.type
+        subtitleLabel.text = location.subtitle
         timeLabel.text = location.time?.dateToString()
 
-        subtitleLabel.hidden = true
+        commentLabel.hidden = true
 
-        if let subtitle = location.subtitle {
-            subtitleLabel.hidden = false
-            subtitleLabel.text = subtitle
+        if let comment = location.comment {
+            commentLabel.hidden = false
+            commentLabel.text = comment
         }
     }
 
