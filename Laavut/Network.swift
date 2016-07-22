@@ -12,7 +12,7 @@ import SwiftyXMLParser
 struct Network {
 
     static func load(completion: ([Location]) -> Void) -> NSURLSessionTask? {
-        let urlString = NSURL(string: "http://laavu.org/lataa.php?paikkakunta=kaikki")
+        let urlString = NSURL(string: "https://laavu.org/lataa.php?paikkakunta=kaikki")
         let request = NSURLRequest(URL: urlString!)
 
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error) in
