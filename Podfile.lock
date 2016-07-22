@@ -1,10 +1,8 @@
 PODS:
   - SwiftyXMLParser (1.0.0)
-  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
   - SwiftyXMLParser (from `https://github.com/yahoojapan/SwiftyXMLParser.git`)
-  - TTTAttributedLabel
 
 EXTERNAL SOURCES:
   SwiftyXMLParser:
@@ -17,8 +15,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   SwiftyXMLParser: efdb7bf1ed73d9caa34a4cf031f193e4187f992e
-  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: '02912b03356989c4fbc6f4274670d16564c6fe23'
+PODFILE CHECKSUM: 6a099096e1037fc55141c03bb36f2f196cec5a0e
 
 COCOAPODS: 1.0.1

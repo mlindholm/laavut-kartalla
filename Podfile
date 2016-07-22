@@ -7,6 +7,5 @@ target 'Laavut' do
 
   # Pods for Laavut
     pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
-    pod 'TTTAttributedLabel'
 
 end
