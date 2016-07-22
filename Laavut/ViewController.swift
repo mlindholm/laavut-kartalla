@@ -125,7 +125,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     //MARK: - Actions
 
     @IBAction func locateButtonPressed(sender: AnyObject) {
-        print("pressed button")
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -174,14 +173,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
         switch daysAgo {
         case nil:
-            print("no prior fetch, fetching…")
             fetchAllLocations()
         case _ where daysAgo >= 1:
-            print("old fetch, fetching…")
             fetchAllLocations()
         case _ where daysAgo == 0:
             if let locations = retrieveLocations() {
-                print("printing…")
                 self.mapView.addAnnotations(locations)
             }
         default:

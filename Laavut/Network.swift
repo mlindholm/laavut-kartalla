@@ -17,9 +17,6 @@ struct Network {
 
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let statusCode = (response as? NSHTTPURLResponse)?.statusCode
-                print(statusCode)
-
                 if let error = error {
                     print(error.localizedDescription)
                     completion([])
