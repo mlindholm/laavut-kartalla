@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import SwiftyXMLParser
 
-class Location: NSObject, MKAnnotation {
+class Location: NSObject, MKAnnotation, MKMapViewDelegate {
     let latitude: Double
     let longitude: Double
     let title: String?
@@ -169,6 +169,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     //MARK: - Map
 
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
+        let identifier = "Location"
+
+        if annotation is Location {
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+
+            if annotationView == nil {
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView!.canShowCallout = true
+                let btn = UIButton(type: .DetailDisclosure)
+                annotationView!.rightCalloutAccessoryView = btn
+            } else {
+                annotationView!.annotation = annotation
+            }
+
+            return annotationView
+        }
+
+        return nil
+    }
+
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        self.performSegueWithIdentifier("showDetail", sender: view)
+    }
+
     func mapViewRegionDidChangeFromUserInteraction() -> Bool {
         let view = self.mapView.subviews[0]
         //  Look through gesture recognizers to determine whether this region change is from user interaction
@@ -199,6 +224,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.75, longitudeDelta: 0.75))
             self.mapView.setRegion(region, animated: false)
+        }
+    }
+
+    // MARK: - Navigation
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail" {
+
+            if let vc = segue.destinationViewController as? DetailViewController {
+                let locationToPass = sender?.annotation as? Location
+                vc.location = locationToPass
+            }
         }
     }
 }
