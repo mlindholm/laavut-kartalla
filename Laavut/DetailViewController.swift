@@ -7,30 +7,49 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailViewController: UIViewController {
+    let regionRadius: CLLocationDistance = 1000
     var location: Location?
+
+    @IBOutlet var mapView: MKMapView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
+    @IBOutlet var typeLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let loc = location {
-            print(loc.title)
-            print(loc.subtitle)
-            print(loc.type)
-            print(loc.time)
-            print(loc.longitude)
-            print(loc.latitude)
+        guard let location = location else { return }
+
+        mapView.mapType = .Standard
+        mapView.zoomEnabled = true
+        mapView.scrollEnabled = true
+        centerMapOnLocation(location)
+
+        titleLabel.text = location.title
+        typeLabel.text = location.type
+        timeLabel.text = location.time?.dateToString()
+
+        subtitleLabel.hidden = true
+
+        if let subtitle = location.subtitle {
+            subtitleLabel.hidden = false
+            subtitleLabel.text = subtitle
         }
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func centerMapOnLocation(location: Location) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 10.0, regionRadius * 10.0)
+        let pin = MKPointAnnotation()
+        pin.coordinate = location.coordinate
+
+        mapView.addAnnotation(pin)
+        mapView.setRegion(coordinateRegion, animated: false)
     }
-    
+
 
     /*
     // MARK: - Navigation

@@ -116,6 +116,7 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="JGP-Zv-cTy"/>
                                         <exclude reference="Upn-WF-hYg"/>
                                         <exclude reference="xKL-Ds-cGK"/>
                                     </mask>
@@ -132,12 +133,14 @@
                             <constraint firstItem="2yy-ko-FAa" firstAttribute="top" secondItem="3jM-su-vh1" secondAttribute="top" id="az5-1d-j7o"/>
                             <constraint firstAttribute="trailing" secondItem="sJR-1f-vk4" secondAttribute="trailing" constant="16" id="ct7-Mt-BSC"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="9iV-Tx-S2B"/>
-                            </mask>
-                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="2yy-ko-FAa" id="B4M-n6-4sd"/>
+                        <outlet property="subtitleLabel" destination="XRo-WN-bQY" id="QpQ-bW-9cg"/>
+                        <outlet property="timeLabel" destination="RzQ-ih-vmc" id="G4V-u5-v2z"/>
+                        <outlet property="titleLabel" destination="oGR-n1-C9C" id="oRg-Yd-UM8"/>
+                        <outlet property="typeLabel" destination="iKE-OX-Tmn" id="AnW-JV-xFF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L7N-cj-hfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
