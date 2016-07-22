@@ -75,7 +75,7 @@
                                     </mask>
                                 </variation>
                             </mapView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sJR-1f-vk4">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sJR-1f-vk4">
                                 <rect key="frame" x="16" y="280" width="568" height="127"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" misplaced="YES" text="Nimi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGR-n1-C9C">
@@ -96,7 +96,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" contentMode="left" misplaced="YES" text="Kuvaus" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRo-WN-bQY" customClass="TTTAttributedLabel">
+                                    <label opaque="NO" contentMode="left" misplaced="YES" text="Kuvaus" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRo-WN-bQY">
                                         <rect key="frame" x="0.0" y="66" width="568" height="17"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -107,7 +107,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wj-77-s1d">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wj-77-s1d">
                                         <rect key="frame" x="0.0" y="87" width="568" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Rrw-gg-KaF"/>
@@ -134,11 +134,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="pVs-Vv-DNN"/>
                     <connections>
+                        <outlet property="commentLabel" destination="XRo-WN-bQY" id="QpQ-bW-9cg"/>
                         <outlet property="mapView" destination="2yy-ko-FAa" id="B4M-n6-4sd"/>
-                        <outlet property="subtitleLabel" destination="XRo-WN-bQY" id="QpQ-bW-9cg"/>
+                        <outlet property="subtitleLabel" destination="iKE-OX-Tmn" id="AnW-JV-xFF"/>
                         <outlet property="timeLabel" destination="RzQ-ih-vmc" id="G4V-u5-v2z"/>
                         <outlet property="titleLabel" destination="oGR-n1-C9C" id="oRg-Yd-UM8"/>
-                        <outlet property="typeLabel" destination="iKE-OX-Tmn" id="AnW-JV-xFF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L7N-cj-hfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
