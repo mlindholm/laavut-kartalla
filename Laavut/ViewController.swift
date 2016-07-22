@@ -12,10 +12,12 @@ import CoreLocation
 import SwiftyXMLParser
 
 class Location: NSObject, MKAnnotation {
-    let title: String?
-    let subtitle: String?
     let latitude: Double
     let longitude: Double
+    let title: String?
+    let subtitle: String?
+    let time: NSDate?
+    let type: String?
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
@@ -23,7 +25,9 @@ class Location: NSObject, MKAnnotation {
     init?(xml: XML.Accessor) {
         guard let lat = xml.attributes["lat"],
             let lon = xml.attributes["lon"],
-            let name = xml["name"].text else {
+            let name = xml["name"].text,
+            let time = xml["time"].text?.stringToDate(),
+            let type = xml["sym"].text else {
                 return nil
         }
 
@@ -31,6 +35,8 @@ class Location: NSObject, MKAnnotation {
         self.longitude = Double(lon)!
         self.title = name
         self.subtitle = xml["cmt"].text
+        self.time = time
+        self.type = type
     }
 
     //MARK: - NSCoding -
@@ -39,6 +45,8 @@ class Location: NSObject, MKAnnotation {
         longitude = aDecoder.decodeObjectForKey("longitude") as! Double
         title = aDecoder.decodeObjectForKey("title") as? String
         subtitle = aDecoder.decodeObjectForKey("subtitle") as? String
+        time = aDecoder.decodeObjectForKey("time") as? NSDate
+        type = aDecoder.decodeObjectForKey("type") as? String
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -46,6 +54,8 @@ class Location: NSObject, MKAnnotation {
         aCoder.encodeObject(longitude, forKey: "longitude")
         aCoder.encodeObject(title, forKey: "title")
         aCoder.encodeObject(subtitle, forKey: "subtitle")
+        aCoder.encodeObject(time, forKey: "time")
+        aCoder.encodeObject(type, forKey: "type")
     }
 }
 
