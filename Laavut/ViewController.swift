@@ -31,12 +31,22 @@ class Location: NSObject, MKAnnotation, MKMapViewDelegate {
                 return nil
         }
 
+        switch type {
+        case "Campground":
+            self.type = "Kota tien varressa"
+        case "Lodge":
+            self.type = "Laavu maastossa"
+        case "Picnic Area":
+            self.type = "Laavu tien varressa"
+        default:
+            self.type = nil
+        }
+
         self.latitude = Double(lat)!
         self.longitude = Double(lon)!
         self.title = name
         self.subtitle = xml["cmt"].text
         self.time = time
-        self.type = type
     }
 
     //MARK: - NSCoding -
