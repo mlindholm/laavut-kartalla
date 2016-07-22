@@ -10,6 +10,7 @@
 		4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADEF3B71D4151440013A80F /* NSDateExtension.swift */; };
 		CC0726751D40D6EF00BEEC07 /* Laavut-kodat.gpx in Resources */ = {isa = PBXBuildFile; fileRef = CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */; };
 		CC1C34A41D41207C00623F17 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C34A31D41207C00623F17 /* Reachability.swift */; };
+		CC1C34A61D42093300623F17 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C34A51D42093300623F17 /* StringExtension.swift */; };
 		CC2A73021D3F81A6004F7D0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2A73011D3F81A6004F7D0B /* AppDelegate.swift */; };
 		CC2A73041D3F81A6004F7D0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2A73031D3F81A6004F7D0B /* ViewController.swift */; };
 		CC2A73071D3F81A6004F7D0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC2A73051D3F81A6004F7D0B /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		4ADEF3B71D4151440013A80F /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Laavut-kodat.gpx"; path = "Laavut/Laavut-kodat.gpx"; sourceTree = "<group>"; };
 		CC1C34A31D41207C00623F17 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		CC1C34A51D42093300623F17 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		CC2A72FE1D3F81A6004F7D0B /* Laavut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laavut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC2A73011D3F81A6004F7D0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC2A73031D3F81A6004F7D0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				CCAE88391D40DE3600B9C08F /* Network.swift */,
 				CC1C34A31D41207C00623F17 /* Reachability.swift */,
 				4ADEF3B71D4151440013A80F /* NSDateExtension.swift */,
+				CC1C34A51D42093300623F17 /* StringExtension.swift */,
 			);
 			path = Laavut;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */,
 				4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */,
+				CC1C34A61D42093300623F17 /* StringExtension.swift in Sources */,
 				CC2A73041D3F81A6004F7D0B /* ViewController.swift in Sources */,
 				CC1C34A41D41207C00623F17 /* Reachability.swift in Sources */,
 				CC2A73021D3F81A6004F7D0B /* AppDelegate.swift in Sources */,
