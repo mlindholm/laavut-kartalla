@@ -51,12 +51,10 @@ class DetailViewController: UIViewController {
     }
 
     func openInAppleMaps(location: Location) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            let coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
-            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: nil))
-            mapItem.name = location.title
-            mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-        })
+        let coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: nil))
+        mapItem.name = location.title
+        mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
 
     @IBAction func directionsButtonPressed(sender: AnyObject) {
