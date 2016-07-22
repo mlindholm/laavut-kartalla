@@ -162,7 +162,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if reachability.isReachable() {
             fetchAllLaavuTask = Network.load() { [weak self] locations in
                 self?.saveLocations(locations)
-                self?.mapView.addAnnotations(locations)
+                self?.addAnnotationsToMap(locations)
             }
         }
     }
@@ -178,7 +178,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             fetchAllLocations()
         case _ where daysAgo == 0:
             if let locations = retrieveLocations() {
-                self.mapView.addAnnotations(locations)
+                addAnnotationsToMap(locations)
             }
         default:
             fatalError()
@@ -188,7 +188,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     //MARK: - Map
 
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
+    func addAnnotationsToMap(locations: [Location]) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.mapView.addAnnotations(locations)
+        })
+    }
+
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "Location"
 
         if annotation is Location {
