@@ -33,16 +33,17 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="7nb-Qn-Myv" id="agG-M9-XGI"/>
+                        <segue destination="O5x-sF-rEL" kind="show" identifier="showDetail" id="wWw-zD-J11"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="416" y="462"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="HHx-cK-ish">
             <objects>
-                <viewController id="O5x-sF-rEL" sceneMemberID="viewController">
+                <viewController id="O5x-sF-rEL" customClass="DetailViewController" customModule="Laavut" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Em1-Ia-CT8"/>
                         <viewControllerLayoutGuide type="bottom" id="ufJ-MT-qPT"/>
