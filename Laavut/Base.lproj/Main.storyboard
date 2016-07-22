@@ -31,8 +31,15 @@
                             <constraint firstAttribute="bottom" secondItem="7nb-Qn-Myv" secondAttribute="bottom" id="xbr-Q6-Ob1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Laavut" id="wwc-2P-qIB"/>
+                    <navigationItem key="navigationItem" title="Laavut" id="wwc-2P-qIB">
+                        <barButtonItem key="rightBarButtonItem" image="ic_location" id="AUd-Ag-rUZ">
+                            <connections>
+                                <action selector="locateButtonPressed:" destination="BYZ-38-t0r" id="1rd-r3-Hvd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="locateButton" destination="AUd-Ag-rUZ" id="qTu-DF-NCm"/>
                         <outlet property="mapView" destination="7nb-Qn-Myv" id="agG-M9-XGI"/>
                         <segue destination="O5x-sF-rEL" kind="show" identifier="showDetail" id="wWw-zD-J11"/>
                     </connections>
@@ -69,7 +76,7 @@
                                 </variation>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sJR-1f-vk4">
-                                <rect key="frame" x="16" y="280" width="568" height="85"/>
+                                <rect key="frame" x="16" y="280" width="568" height="83"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" misplaced="YES" text="Nimi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGR-n1-C9C">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="20"/>
@@ -78,19 +85,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" contentMode="left" misplaced="YES" text="Tyyppi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKE-OX-Tmn">
-                                        <rect key="frame" x="0.0" y="24" width="568" height="18"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <rect key="frame" x="0.0" y="24" width="568" height="17"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" contentMode="left" misplaced="YES" text="01.01.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzQ-ih-vmc">
-                                        <rect key="frame" x="0.0" y="46" width="568" height="18"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <rect key="frame" x="0.0" y="45" width="568" height="17"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" contentMode="left" misplaced="YES" text="Kuvaus" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRo-WN-bQY">
-                                        <rect key="frame" x="0.0" y="68" width="568" height="17"/>
+                                        <rect key="frame" x="0.0" y="66" width="568" height="17"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -109,7 +116,7 @@
                             <constraint firstAttribute="trailing" secondItem="sJR-1f-vk4" secondAttribute="trailing" constant="16" id="ct7-Mt-BSC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="la0-fC-LlA"/>
+                    <navigationItem key="navigationItem" id="pVs-Vv-DNN"/>
                     <connections>
                         <outlet property="mapView" destination="2yy-ko-FAa" id="B4M-n6-4sd"/>
                         <outlet property="subtitleLabel" destination="XRo-WN-bQY" id="QpQ-bW-9cg"/>
@@ -141,4 +148,7 @@
             <point key="canvasLocation" x="416" y="462"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_location" width="24" height="24"/>
+    </resources>
 </document>

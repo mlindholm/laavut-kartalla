@@ -50,7 +50,6 @@ class DetailViewController: UIViewController {
         mapView.setRegion(coordinateRegion, animated: false)
     }
 
-
     /*
     // MARK: - Navigation
 

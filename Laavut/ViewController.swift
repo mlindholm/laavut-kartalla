@@ -78,13 +78,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var fetchAllLaavuTask: NSURLSessionTask?
 
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var locateButton: UIBarButtonItem!
 
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBarHidden = true
+//        self.navigationController?.navigationBarHidden = true
 
         centerMapOnLocation(initialLocation)
 
@@ -113,12 +114,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         mapView.showsUserLocation = true
-        self.navigationController?.navigationBarHidden = true
+//        self.navigationController?.navigationBarHidden = true
     }
 
     override func viewWillDisappear(animated: Bool) {
         mapView.showsUserLocation = false
         self.navigationController?.navigationBarHidden = false
+    }
+
+    //MARK: - Actions
+
+    @IBAction func locateButtonPressed(sender: AnyObject) {
+        print("pressed button")
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
     }
 
     //MARK: - Locations
