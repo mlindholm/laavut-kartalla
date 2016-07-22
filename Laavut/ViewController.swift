@@ -84,6 +84,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBarHidden = true
+
         centerMapOnLocation(initialLocation)
 
         self.locationManager.requestAlwaysAuthorization()
@@ -111,10 +113,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         mapView.showsUserLocation = true
+        self.navigationController?.navigationBarHidden = true
     }
 
     override func viewWillDisappear(animated: Bool) {
         mapView.showsUserLocation = false
+        self.navigationController?.navigationBarHidden = false
     }
 
     //MARK: - Locations
