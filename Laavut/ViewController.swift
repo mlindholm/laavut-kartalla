@@ -196,23 +196,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "Location"
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView
 
-        if annotation is Location {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
-
-            if annotationView == nil {
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView!.canShowCallout = true
-                let btn = UIButton(type: .DetailDisclosure)
-                annotationView!.rightCalloutAccessoryView = btn
-            } else {
-                annotationView!.annotation = annotation
-            }
-
-            return annotationView
+        if annotation is MKUserLocation {
+            return nil
         }
 
-        return nil
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+            let btn = UIButton(type: .DetailDisclosure)
+            annotationView!.rightCalloutAccessoryView = btn
+        } else {
+            annotationView!.annotation = annotation
+        }
+
+        return annotationView
     }
 
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
