@@ -14,4 +14,12 @@ extension NSDate {
         let components = calendar.components([.Day], fromDate: self, toDate: NSDate(), options: [])
         return components.day
     }
+
+    func dateToString(format: String = "yyyy-MM-dd'T'HH:mm:ss'Z'") -> String{
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = format
+        formatter.timeStyle = .NoStyle
+        formatter.dateStyle = .ShortStyle
+        return formatter.stringFromDate(self)
+    }
 }
