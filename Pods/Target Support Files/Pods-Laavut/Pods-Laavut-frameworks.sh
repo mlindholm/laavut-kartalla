@@ -84,12 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AEXML/AEXML.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/GPXKit/GPXKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyXMLParser/SwiftyXMLParser.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TTTAttributedLabel/TTTAttributedLabel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AEXML/AEXML.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/GPXKit/GPXKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyXMLParser/SwiftyXMLParser.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TTTAttributedLabel/TTTAttributedLabel.framework"
 fi

@@ -1,12 +1,10 @@
 PODS:
-  - AEXML (3.0.0)
-  - GPXKit (1.1.0):
-    - AEXML (~> 3.0)
   - SwiftyXMLParser (1.0.0)
+  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
-  - GPXKit (~> 1.1)
   - SwiftyXMLParser (from `https://github.com/yahoojapan/SwiftyXMLParser.git`)
+  - TTTAttributedLabel
 
 EXTERNAL SOURCES:
   SwiftyXMLParser:
@@ -18,10 +16,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/yahoojapan/SwiftyXMLParser.git
 
 SPEC CHECKSUMS:
-  AEXML: 716fb0a8decba4a3517324a71fee3685b30233d2
-  GPXKit: 84e1739cde4b6e38622fd8d6af85c796dff05d8b
   SwiftyXMLParser: efdb7bf1ed73d9caa34a4cf031f193e4187f992e
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: af63bfefb8b58eb6e6b72b0a642046193a2edae3
+PODFILE CHECKSUM: '02912b03356989c4fbc6f4274670d16564c6fe23'
 
 COCOAPODS: 1.0.1
