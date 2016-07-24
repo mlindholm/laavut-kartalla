@@ -218,24 +218,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.performSegueWithIdentifier("showDetail", sender: view)
     }
 
-    func mapViewRegionDidChangeFromUserInteraction() -> Bool {
-        let view = self.mapView.subviews[0]
-        //  Look through gesture recognizers to determine whether this region change is from user interaction
-        if let gestureRecognizers = view.gestureRecognizers {
-            for recognizer in gestureRecognizers {
-                if( recognizer.state == UIGestureRecognizerState.Began || recognizer.state == UIGestureRecognizerState.Ended ) {
-                    return true
-                }
-            }
-        }
-        return false
+    func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        locationManager.stopUpdatingLocation()
     }
 
-    func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
-        if (mapChangedFromUserInteraction) {
-            locationManager.stopUpdatingLocation()
-        }
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        locationManager.stopUpdatingLocation()
     }
 
     func centerMapOnLocation(location: CLLocation) {
