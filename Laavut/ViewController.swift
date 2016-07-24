@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import SwiftyXMLParser
 
-class Location: NSObject, MKAnnotation, MKMapViewDelegate {
+class Location: NSObject, MKAnnotation {
     let latitude: Double
     let longitude: Double
     let title: String?
