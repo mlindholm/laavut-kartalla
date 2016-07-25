@@ -212,10 +212,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             fetchAllLocations()
         case _ where daysAgo >= 1:
             fetchAllLocations()
-        case _ where daysAgo == 0:
-            return
         default:
-            fatalError()
+            return
         }
     }
 
@@ -232,6 +230,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if reachability.isReachable() {
             fetchAllLocationTask = Network.load() { [weak self] locations in
                 self?.saveLocations(locations)
+                self?.clusterManager.addAnnotations(locations)
             }
         }
     }
