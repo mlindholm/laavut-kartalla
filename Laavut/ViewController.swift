@@ -118,77 +118,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.showsUserLocation = false
     }
 
-    //MARK: - Actions
-
-    @IBAction func locateButtonPressed(sender: AnyObject) {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-
-    //MARK: - Locations
-
-    func archiveLocations(locations:[Location]) -> NSData {
-        let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations as NSArray)
-        return archivedObject
-    }
-
-    func saveLocations(locations: [Location]) {
-        let archivedObject = archiveLocations(locations)
-        defaults.setObject(archivedObject, forKey: "annotations")
-        defaults.setObject(NSDate(), forKey: "saveLocationsDate")
-    }
-
-    func retrieveLocations() -> [Location]? {
-        if let unarchivedObject = NSUserDefaults.standardUserDefaults().objectForKey("annotations") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location]
-        }
-        return nil
-    }
-
-    func fetchAllLocations() {
-        let reachability: Reachability
-
-        do {
-            reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            print("Unable to create Reachability")
-            return
-        }
-
-        if reachability.isReachable() {
-            fetchAllLaavuTask = Network.load() { [weak self] locations in
-                self?.saveLocations(locations)
-                self?.addAnnotationsToMap(locations)
-            }
-        }
-    }
-
-    func checkForUpdates() {
-        let saveLocationsDate = defaults.objectForKey("saveLocationsDate") as? NSDate
-        let daysAgo = saveLocationsDate?.daysAgo
-
-        switch daysAgo {
-        case nil:
-            fetchAllLocations()
-        case _ where daysAgo >= 1:
-            fetchAllLocations()
-        case _ where daysAgo == 0:
-            if let locations = retrieveLocations() {
-                addAnnotationsToMap(locations)
-            }
-        default:
-            fatalError()
-        }
-    }
-
-
     //MARK: - Map
-
-    func addAnnotationsToMap(locations: [Location]) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.mapView.addAnnotations(locations)
-        })
-    }
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "Location"
@@ -228,6 +158,75 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.75, longitudeDelta: 0.75))
             self.mapView.setRegion(region, animated: false)
         }
+    }
+
+    //MARK: - Actions
+
+    @IBAction func locateButtonPressed(sender: AnyObject) {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+
+    //MARK: - Locations
+
+    func checkForUpdates() {
+        let saveLocationsDate = defaults.objectForKey("saveLocationsDate") as? NSDate
+        let daysAgo = saveLocationsDate?.daysAgo
+
+        switch daysAgo {
+        case nil:
+            fetchAllLocations()
+        case _ where daysAgo >= 1:
+            fetchAllLocations()
+        case _ where daysAgo == 0:
+            if let locations = retrieveLocations() {
+                addAnnotationsToMap(locations)
+            }
+        default:
+            fatalError()
+        }
+    }
+
+    func fetchAllLocations() {
+        let reachability: Reachability
+
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+        } catch {
+            print("Unable to create Reachability")
+            return
+        }
+
+        if reachability.isReachable() {
+            fetchAllLaavuTask = Network.load() { [weak self] locations in
+                self?.saveLocations(locations)
+                self?.addAnnotationsToMap(locations)
+            }
+        }
+    }
+
+    func archiveLocations(locations:[Location]) -> NSData {
+        let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations as NSArray)
+        return archivedObject
+    }
+
+    func saveLocations(locations: [Location]) {
+        let archivedObject = archiveLocations(locations)
+        defaults.setObject(archivedObject, forKey: "annotations")
+        defaults.setObject(NSDate(), forKey: "saveLocationsDate")
+    }
+
+    func retrieveLocations() -> [Location]? {
+        if let unarchivedObject = NSUserDefaults.standardUserDefaults().objectForKey("annotations") as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location]
+        }
+        return nil
+    }
+
+    func addAnnotationsToMap(locations: [Location]) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.mapView.addAnnotations(locations)
+        })
     }
 
     // MARK: - Navigation
