@@ -132,21 +132,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
         case let cluster as AnnotationCluster:
             reuseId = "Cluster"
-            var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? AnnotationClusterView
-            clusterView = AnnotationClusterView(annotation: cluster, reuseIdentifier: reuseId, options: nil)
-            clusterView?.reuseWithAnnotation(cluster)
-            return clusterView
+            if let clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? AnnotationClusterView {
+                clusterView.reuseWithAnnotation(cluster)
+                return clusterView
+            } else {
+                return AnnotationClusterView(annotation: cluster, reuseIdentifier: reuseId, options: nil)
+            }
 
         default:
             reuseId = "Pin"
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView?.annotation = annotation
-            pinView?.canShowCallout = true
-            pinView?.pinTintColor = Colors.Green
-            let btn = UIButton(type: .DetailDisclosure)
-            pinView?.rightCalloutAccessoryView = btn
-            return pinView
+            if let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView {
+                pinView.annotation = annotation
+                return pinView
+            } else {
+                let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView.canShowCallout = true
+                pinView.pinTintColor = Colors.Green
+                let btn = UIButton(type: .DetailDisclosure)
+                pinView.rightCalloutAccessoryView = btn
+                return pinView
+            }
         }
     }
 
@@ -163,7 +168,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         if view.isKindOfClass(AnnotationClusterView) {
             if let coordinate = view.annotation?.coordinate {
-                centerOnMap(coordinate, animated: true, multiplier: 20.0)
+                centerOnMap(coordinate, animated: true, multiplier: 25.0)
             }
         }
     }
