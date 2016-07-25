@@ -6,6 +6,7 @@ target 'Laavut' do
   use_frameworks!
 
   # Pods for Laavut
-    pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
+    pod 'SwiftyXMLParser', :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
+    pod 'FBAnnotationClusteringSwift'
 
 end
