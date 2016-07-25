@@ -12,7 +12,7 @@ import CoreLocation
 import SwiftyXMLParser
 import AnnotationClustering
 
-class Location: NSObject {
+class Location: NSObject, MKAnnotation {
     let latitude: Double
     let longitude: Double
     let title: String?
@@ -69,12 +69,10 @@ class Location: NSObject {
     }
 }
 
-extension Location: MKAnnotation {}
-
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, ClusterManagerDelegate {
     let locationManager = CLLocationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
-    let initialLocation = CLLocation(latitude: 60.1699, longitude: 24.9384)
+    let initialLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
     let regionRadius: CLLocationDistance = 1000
     let clusterManager = ClusterManager()
     var mapChangedFromUserInteraction = false
@@ -89,9 +87,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         super.viewDidLoad()
 
         checkForUpdates()
-
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, regionRadius * 100.0, regionRadius * 100.0)
-        mapView.setRegion(coordinateRegion, animated: false)
+        centerOnMap(initialLocation, animated: false, multiplier: 100.0)
 
         self.locationManager.requestWhenInUseAuthorization()
 
@@ -102,6 +98,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             locationManager.startUpdatingLocation()
         }
 
+        if let locations = retrieveLocations() {
+            clusterManager.addAnnotations(locations)
+        }
+        clusterManager.delegate = self
+        clusterManager.maxZoomLevel = 10
+
         mapView.delegate = self
         mapView.showsScale = true
 
@@ -110,20 +112,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
 
-    override func viewDidAppear(animated: Bool) {
-        if let locations = retrieveLocations() {
-            self.clusterManager.addAnnotations(locations)
-        }
-    }
-
     override func viewWillDisappear(animated: Bool) {
         mapView.showsUserLocation = false
+        fetchAllLocationTask?.cancel()
     }
 
     //MARK: - Map
 
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func cellSizeFactorForManager(manager: ClusterManager) -> CGFloat {
+        return 1.0
+    }
 
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         var reuseId = ""
 
         switch annotation {
@@ -132,28 +132,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
         case let cluster as AnnotationCluster:
             reuseId = "Cluster"
-            if let clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? AnnotationClusterView {
-                clusterView.reuseWithAnnotation(cluster)
-                return clusterView
-            }
-            else {
-                return AnnotationClusterView(annotation: cluster, reuseIdentifier: reuseId, options: nil)
-            }
+            var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? AnnotationClusterView
+            clusterView = AnnotationClusterView(annotation: cluster, reuseIdentifier: reuseId, options: nil)
+            clusterView?.reuseWithAnnotation(cluster)
+            return clusterView
 
         default:
             reuseId = "Pin"
-            if let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView {
-                pinView.annotation = annotation
-                pinView.canShowCallout = true
-                pinView.pinTintColor = Colors.Green
-                let btn = UIButton(type: .DetailDisclosure)
-                pinView.rightCalloutAccessoryView = btn
-                return pinView
-            }
-            else {
-                let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                return pinView
-            }
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView?.annotation = annotation
+            pinView?.canShowCallout = true
+            pinView?.pinTintColor = Colors.Green
+            let btn = UIButton(type: .DetailDisclosure)
+            pinView?.rightCalloutAccessoryView = btn
+            return pinView
         }
     }
 
@@ -164,6 +157,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let scale: Double = mapBoundsWidth / mapRectWidth
             let annotationArray = self.clusterManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale:scale)
             self.clusterManager.displayAnnotations(annotationArray, mapView: mapView)
+        }
+    }
+
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        if view.isKindOfClass(AnnotationClusterView) {
+            if let coordinate = view.annotation?.coordinate {
+                centerOnMap(coordinate, animated: true, multiplier: 20.0)
+            }
         }
     }
 
@@ -178,6 +179,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             self.mapView.setRegion(region, animated: false)
             locationManager.stopUpdatingLocation()
         }
+    }
+
+    func centerOnMap(location: CLLocationCoordinate2D, animated: Bool, multiplier: Double) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location, regionRadius * multiplier, regionRadius * multiplier)
+        mapView.setRegion(coordinateRegion, animated: animated)
     }
 
     //MARK: - Actions
@@ -250,12 +256,4 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             }
         }
     }
-}
-
-extension ViewController : ClusterManagerDelegate {
-
-    func cellSizeFactorForManager(manager: ClusterManager) -> CGFloat {
-        return 1.0
-    }
-
 }
