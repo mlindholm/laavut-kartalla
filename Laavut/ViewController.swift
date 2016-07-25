@@ -74,7 +74,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     let initialLocation = CLLocation(latitude: 60.1699, longitude: 24.9384)
     let regionRadius: CLLocationDistance = 1000
     var mapChangedFromUserInteraction = false
-    var fetchAllLaavuTask: NSURLSessionTask?
+    var fetchAllLocationTask: NSURLSessionTask?
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var locateButton: UIBarButtonItem!
@@ -186,7 +186,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
 
         if reachability.isReachable() {
-            fetchAllLaavuTask = Network.load() { [weak self] locations in
+            fetchAllLocationTask = Network.load() { [weak self] locations in
                 self?.saveLocations(locations)
                 self?.addAnnotationsToMap(locations)
             }
