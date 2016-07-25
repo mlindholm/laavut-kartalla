@@ -84,10 +84,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        checkForUpdates()
+
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, regionRadius * 100.0, regionRadius * 100.0)
         mapView.setRegion(coordinateRegion, animated: false)
 
-        self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {
@@ -100,16 +101,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.delegate = self
         mapView.showsScale = true
 
-        if let coor = mapView.userLocation.location?.coordinate{
-            mapView.setCenterCoordinate(coor, animated: false)
+        if let coordinate = mapView.userLocation.location?.coordinate{
+            mapView.setCenterCoordinate(coordinate, animated: false)
         }
-
-        checkForUpdates()
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        mapView.showsUserLocation = true
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -138,16 +132,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         return annotationView
     }
 
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//        locationManager.stopUpdatingLocation()
+    }
+
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         self.performSegueWithIdentifier("showDetail", sender: view)
-    }
-
-    func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        locationManager.stopUpdatingLocation()
-    }
-
-    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        locationManager.stopUpdatingLocation()
     }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -155,13 +145,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.75, longitudeDelta: 0.75))
             self.mapView.setRegion(region, animated: false)
+            locationManager.stopUpdatingLocation()
         }
     }
 
     //MARK: - Actions
 
     @IBAction func locateButtonPressed(sender: AnyObject) {
-        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
 
