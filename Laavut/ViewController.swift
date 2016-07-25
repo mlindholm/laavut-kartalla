@@ -98,9 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
 
         mapView.delegate = self
-        mapView.mapType = .Standard
-        mapView.zoomEnabled = true
-        mapView.scrollEnabled = true
+        mapView.showsScale = true
 
         if let coor = mapView.userLocation.location?.coordinate{
             mapView.setCenterCoordinate(coor, animated: false)
