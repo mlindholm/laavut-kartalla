@@ -87,13 +87,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CC2A72F51D3F81A5004F7D0B = {
+		4A1AB8B91D46951A0005379F /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
 				4A11243B1D46699500666561 /* AnnotationClustering.framework.dSYM */,
 				4A11243C1D46699500666561 /* SwiftyXMLParser.framework.dSYM */,
 				4A1124331D46696700666561 /* AnnotationClustering.framework */,
 				4A1124341D46696700666561 /* SwiftyXMLParser.framework */,
+			);
+			name = Carthage;
+			sourceTree = "<group>";
+		};
+		CC2A72F51D3F81A5004F7D0B = {
+			isa = PBXGroup;
+			children = (
+				4A1AB8B91D46951A0005379F /* Carthage */,
 				CC2A73001D3F81A6004F7D0B /* Laavut */,
 				CC2A72FF1D3F81A6004F7D0B /* Products */,
 				DBE64038ABB96739D52AEE4D /* Frameworks */,
