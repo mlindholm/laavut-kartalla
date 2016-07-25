@@ -167,8 +167,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        if view.isKindOfClass(AnnotationClusterView) {
-            if let coordinate = view.annotation?.coordinate {
+        if let view = view as? AnnotationClusterView {
+            guard let coordinate = view.annotation?.coordinate else { return }
+            if view.count > 100 {
+                centerOnMap(coordinate, animated: true, multiplier: 50.0)
+            } else {
                 centerOnMap(coordinate, animated: true, multiplier: 25.0)
             }
         }
