@@ -84,7 +84,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        centerMapOnLocation(initialLocation)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, regionRadius * 100.0, regionRadius * 100.0)
+        mapView.setRegion(coordinateRegion, animated: false)
 
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
@@ -219,11 +220,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         locationManager.stopUpdatingLocation()
-    }
-
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 100.0, regionRadius * 100.0)
-        mapView.setRegion(coordinateRegion, animated: false)
     }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
