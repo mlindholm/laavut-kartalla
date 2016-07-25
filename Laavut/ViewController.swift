@@ -49,7 +49,6 @@ class Location: NSObject, MKAnnotation {
         self.time = time
     }
 
-    //MARK: - NSCoding -
     required init(coder aDecoder: NSCoder) {
         latitude = aDecoder.decodeObjectForKey("latitude") as! Double
         longitude = aDecoder.decodeObjectForKey("longitude") as! Double
@@ -85,8 +84,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.navigationController?.navigationBarHidden = true
-
         centerMapOnLocation(initialLocation)
 
         self.locationManager.requestAlwaysAuthorization()
@@ -114,12 +111,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         mapView.showsUserLocation = true
-//        self.navigationController?.navigationBarHidden = true
     }
 
     override func viewWillDisappear(animated: Bool) {
         mapView.showsUserLocation = false
-        self.navigationController?.navigationBarHidden = false
     }
 
     //MARK: - Actions
