@@ -106,6 +106,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
 
+    override func viewDidAppear(animated: Bool) {
+        if let locations = retrieveLocations() {
+            self.mapView.addAnnotations(locations)
+        }
+    }
+
     override func viewWillDisappear(animated: Bool) {
         mapView.showsUserLocation = false
     }
@@ -167,9 +173,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         case _ where daysAgo >= 1:
             fetchAllLocations()
         case _ where daysAgo == 0:
-            if let locations = retrieveLocations() {
-                addAnnotationsToMap(locations)
-            }
+            return
         default:
             fatalError()
         }
@@ -188,7 +192,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if reachability.isReachable() {
             fetchAllLocationTask = Network.load() { [weak self] locations in
                 self?.saveLocations(locations)
-                self?.addAnnotationsToMap(locations)
             }
         }
     }
@@ -209,12 +212,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             return NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location]
         }
         return nil
-    }
-
-    func addAnnotationsToMap(locations: [Location]) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.mapView.addAnnotations(locations)
-        })
     }
 
     // MARK: - Navigation
