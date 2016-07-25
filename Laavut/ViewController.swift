@@ -10,9 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 import SwiftyXMLParser
-import FBAnnotationClusteringSwift
+import AnnotationClustering
 
-class Location: NSObject, MKAnnotation {
+class Location: NSObject {
     let latitude: Double
     let longitude: Double
     let title: String?
@@ -69,12 +69,14 @@ class Location: NSObject, MKAnnotation {
     }
 }
 
+extension Location: MKAnnotation {}
+
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let locationManager = CLLocationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
     let initialLocation = CLLocation(latitude: 60.1699, longitude: 24.9384)
     let regionRadius: CLLocationDistance = 1000
-    let clusteringManager = FBClusteringManager()
+    let clusterManager = ClusterManager()
     var mapChangedFromUserInteraction = false
     var fetchAllLocationTask: NSURLSessionTask?
 
@@ -110,7 +112,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     override func viewDidAppear(animated: Bool) {
         if let locations = retrieveLocations() {
-            self.clusteringManager.addAnnotations(locations)
+            self.clusterManager.addAnnotations(locations)
         }
     }
 
@@ -121,34 +123,48 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     //MARK: - Map
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        }
 
-        if annotation is FBAnnotationCluster {
-            var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier("cluster")
-            let options = FBAnnotationClusterViewOptions(smallClusterImage: "cluster_small", mediumClusterImage: "cluster_medium", largeClusterImage: "cluster_large")
-            clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: "cluster", options: options)
-            return clusterView
-        } else {
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin") as? MKPinAnnotationView
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-            pinView!.canShowCallout = true
-            pinView!.pinTintColor = Colors.Green
-            let btn = UIButton(type: .DetailDisclosure)
-            pinView!.rightCalloutAccessoryView = btn
-            return pinView
+        var reuseId = ""
+
+        switch annotation {
+        case is MKUserLocation:
+            return nil // show Apple's default user location pin
+
+        case let cluster as AnnotationCluster:
+            reuseId = "Cluster"
+            if let clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? AnnotationClusterView {
+                clusterView.reuseWithAnnotation(cluster)
+                return clusterView
+            }
+            else {
+                return AnnotationClusterView(annotation: cluster, reuseIdentifier: reuseId, options: nil)
+            }
+
+        default:
+            reuseId = "Pin"
+            if let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView {
+                pinView.annotation = annotation
+                pinView.canShowCallout = true
+                pinView.pinTintColor = Colors.Green
+                let btn = UIButton(type: .DetailDisclosure)
+                pinView.rightCalloutAccessoryView = btn
+                return pinView
+            }
+            else {
+                let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                return pinView
+            }
         }
     }
 
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool){
-        NSOperationQueue().addOperationWithBlock({
-            let mapBoundsWidth = Double(self.mapView.bounds.size.width)
-            let mapRectWidth: Double = self.mapView.visibleMapRect.size.width
+        NSOperationQueue().addOperationWithBlock { [unowned self] in
+            let mapBoundsWidth = Double(mapView.bounds.size.width)
+            let mapRectWidth: Double = mapView.visibleMapRect.size.width
             let scale: Double = mapBoundsWidth / mapRectWidth
-            let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale: scale)
-            self.clusteringManager.displayAnnotations(annotationArray, onMapView: self.mapView)
-        })
+            let annotationArray = self.clusterManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale:scale)
+            self.clusterManager.displayAnnotations(annotationArray, mapView: mapView)
+        }
     }
 
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -236,9 +252,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 }
 
-extension ViewController : FBClusteringManagerDelegate {
+extension ViewController : ClusterManagerDelegate {
 
-    func cellSizeFactorForCoordinator(coordinator:FBClusteringManager) -> CGFloat{
+    func cellSizeFactorForManager(manager: ClusterManager) -> CGFloat {
         return 1.0
     }
 
