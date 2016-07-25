@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import AddressBook
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, MKMapViewDelegate {
     let regionRadius: CLLocationDistance = 1000
     var location: Location?
 
@@ -25,29 +25,29 @@ class DetailViewController: UIViewController {
 
         guard let location = location else { return }
 
-        mapView.mapType = .Standard
-        mapView.zoomEnabled = true
-        mapView.scrollEnabled = true
-        centerMapOnLocation(location)
+        mapView.delegate = self
+        mapView.centerOnLocation(location.coordinate, animated: false, multiplier: 10.0)
+
+        let pin = MKPointAnnotation()
+        pin.coordinate = location.coordinate
+        mapView.addAnnotation(pin)
 
         titleLabel.text = location.title
         subtitleLabel.text = location.subtitle
         timeLabel.text = location.time?.dateToString()
 
-        commentLabel.hidden = true
-
         if let comment = location.comment {
             commentLabel.hidden = false
             commentLabel.text = comment
+        } else {
+            commentLabel.hidden = true
         }
     }
 
-    func centerMapOnLocation(location: Location) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 10.0, regionRadius * 10.0)
-        let pin = MKPointAnnotation()
-        pin.coordinate = location.coordinate
-        mapView.addAnnotation(pin)
-        mapView.setRegion(coordinateRegion, animated: false)
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        pinView.pinTintColor = Colors.Green
+        return pinView
     }
 
     func openInAppleMaps(location: Location) {

@@ -11,6 +11,7 @@
 		4A1124361D46696700666561 /* AnnotationClustering.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1124331D46696700666561 /* AnnotationClustering.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A1124371D46696700666561 /* SwiftyXMLParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1124341D46696700666561 /* SwiftyXMLParser.framework */; };
 		4A1124381D46696700666561 /* SwiftyXMLParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1124341D46696700666561 /* SwiftyXMLParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A1A6F581D46B2C200395938 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A6F571D46B2C200395938 /* MKMapViewExtension.swift */; };
 		4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADEF3B71D4151440013A80F /* NSDateExtension.swift */; };
 		CC0726751D40D6EF00BEEC07 /* Laavut-kodat.gpx in Resources */ = {isa = PBXBuildFile; fileRef = CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */; };
 		CC1C34A41D41207C00623F17 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C34A31D41207C00623F17 /* Reachability.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		4A1124331D46696700666561 /* AnnotationClustering.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AnnotationClustering.framework; path = Carthage/Build/iOS/AnnotationClustering.framework; sourceTree = "<group>"; };
 		4A1124341D46696700666561 /* SwiftyXMLParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyXMLParser.framework; path = Carthage/Build/iOS/SwiftyXMLParser.framework; sourceTree = "<group>"; };
+		4A1A6F571D46B2C200395938 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		4ADEF3B71D4151440013A80F /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Laavut-kodat.gpx"; path = "Laavut/Laavut-kodat.gpx"; sourceTree = "<group>"; };
 		CC1C34A31D41207C00623F17 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				CC1C34A51D42093300623F17 /* StringExtension.swift */,
 				CC1C34A71D42108700623F17 /* DetailViewController.swift */,
 				CCE07A5B1D425CD30011057F /* Colors.swift */,
+				4A1A6F571D46B2C200395938 /* MKMapViewExtension.swift */,
 			);
 			path = Laavut;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1A6F581D46B2C200395938 /* MKMapViewExtension.swift in Sources */,
 				CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */,
 				CCE07A5C1D425CD30011057F /* Colors.swift in Sources */,
 				4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */,

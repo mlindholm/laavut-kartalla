@@ -73,7 +73,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     let locationManager = CLLocationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
     let initialLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
-    let regionRadius: CLLocationDistance = 1000
     let clusterManager = ClusterManager()
     var mapChangedFromUserInteraction = false
     var fetchAllLocationTask: NSURLSessionTask?
@@ -87,7 +86,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         super.viewDidLoad()
 
         checkForUpdates()
-        centerOnMap(initialLocation, animated: false, multiplier: 100.0)
 
         self.locationManager.requestWhenInUseAuthorization()
 
@@ -106,6 +104,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
         mapView.delegate = self
         mapView.showsScale = true
+        mapView.centerOnLocation(initialLocation, animated: false, multiplier: 100.0)
+
 
         if let coordinate = mapView.userLocation.location?.coordinate{
             mapView.setCenterCoordinate(coordinate, animated: false)
@@ -170,9 +170,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if let view = view as? AnnotationClusterView {
             guard let coordinate = view.annotation?.coordinate else { return }
             if view.count > 100 {
-                centerOnMap(coordinate, animated: true, multiplier: 50.0)
+                mapView.centerOnLocation(coordinate, animated: true, multiplier: 50.0)
             } else {
-                centerOnMap(coordinate, animated: true, multiplier: 25.0)
+                mapView.centerOnLocation(coordinate, animated: true, multiplier: 25.0)
             }
         }
     }
@@ -188,11 +188,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             self.mapView.setRegion(region, animated: false)
             locationManager.stopUpdatingLocation()
         }
-    }
-
-    func centerOnMap(location: CLLocationCoordinate2D, animated: Bool, multiplier: Double) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location, regionRadius * multiplier, regionRadius * multiplier)
-        mapView.setRegion(coordinateRegion, animated: animated)
     }
 
     //MARK: - Actions
