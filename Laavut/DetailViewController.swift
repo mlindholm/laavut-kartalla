@@ -15,7 +15,7 @@ import Crashlytics
 class DetailViewController: UIViewController, MKMapViewDelegate {
     let regionRadius: CLLocationDistance = 1000
     let pin = MKPointAnnotation()
-    var orginalMapHeigh = CGFloat()
+    var orginalMapHeight = CGFloat()
     var fullScreen = false
     var location: Location?
 
@@ -32,7 +32,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
 
         guard let location = location else { return }
 
-        orginalMapHeigh = mapHeight.multiplier
+        orginalMapHeight = mapHeight.multiplier
 
         mapView.delegate = self
         mapView.centerOnLocation(location.coordinate, animated: false, multiplier: 10.0)
@@ -88,7 +88,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         } else {
             fullScreen = false
             fullscreenButton.image = UIImage.init(named: "ic_fullscreen")
-            mapHeight = mapHeight.setMultiplier(orginalMapHeigh)
+            mapHeight = mapHeight.setMultiplier(orginalMapHeight)
             animateMapHeight()
         }
     }
