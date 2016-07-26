@@ -87,10 +87,6 @@
 		CC2A72F51D3F81A5004F7D0B = {
 			isa = PBXGroup;
 			children = (
-				CCC7841D1D477EB600E6D316 /* AnnotationClustering.framework */,
-				CCC7841E1D477EB600E6D316 /* SwiftyXMLParser.framework */,
-				CC01E86B1D475E1D00763B65 /* Fabric.framework */,
-				CC01E86C1D475E1D00763B65 /* Crashlytics.framework */,
 				CC2A73001D3F81A6004F7D0B /* Laavut */,
 				CC2A72FF1D3F81A6004F7D0B /* Products */,
 				DBE64038ABB96739D52AEE4D /* Frameworks */,
@@ -124,6 +120,10 @@
 		DBE64038ABB96739D52AEE4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CCC7841D1D477EB600E6D316 /* AnnotationClustering.framework */,
+				CCC7841E1D477EB600E6D316 /* SwiftyXMLParser.framework */,
+				CC01E86B1D475E1D00763B65 /* Fabric.framework */,
+				CC01E86C1D475E1D00763B65 /* Crashlytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
