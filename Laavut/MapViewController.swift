@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  Laavut
 //
 //  Created by Mathias Lindholm on 20.7.2016.
@@ -69,7 +69,7 @@ class Location: NSObject, MKAnnotation {
     }
 }
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, ClusterManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, ClusterManagerDelegate {
     let locationManager = CLLocationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
     let initialLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
