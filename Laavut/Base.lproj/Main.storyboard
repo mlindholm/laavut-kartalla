@@ -132,9 +132,17 @@
                             <constraint firstAttribute="trailing" secondItem="sJR-1f-vk4" secondAttribute="trailing" constant="16" id="ct7-Mt-BSC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="pVs-Vv-DNN"/>
+                    <navigationItem key="navigationItem" id="pVs-Vv-DNN">
+                        <barButtonItem key="rightBarButtonItem" image="ic_fullscreen" id="2be-Jg-UXx">
+                            <connections>
+                                <action selector="fullscreenButtonPressed:" destination="O5x-sF-rEL" id="n5p-lO-OQO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="commentLabel" destination="XRo-WN-bQY" id="QpQ-bW-9cg"/>
+                        <outlet property="fullscreenButton" destination="2be-Jg-UXx" id="qan-y1-h2t"/>
+                        <outlet property="mapHeight" destination="9iV-Tx-S2B" id="i0o-xR-Zyg"/>
                         <outlet property="mapView" destination="2yy-ko-FAa" id="B4M-n6-4sd"/>
                         <outlet property="subtitleLabel" destination="iKE-OX-Tmn" id="AnW-JV-xFF"/>
                         <outlet property="timeLabel" destination="RzQ-ih-vmc" id="G4V-u5-v2z"/>
@@ -165,6 +173,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_fullscreen" width="24" height="24"/>
         <image name="ic_location" width="24" height="24"/>
     </resources>
 </document>

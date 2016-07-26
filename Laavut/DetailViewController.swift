@@ -12,6 +12,9 @@ import AddressBook
 
 class DetailViewController: UIViewController, MKMapViewDelegate {
     let regionRadius: CLLocationDistance = 1000
+    let pin = MKPointAnnotation()
+    var orginalMapHeigh = CGFloat()
+    var fullScreen = false
     var location: Location?
 
     @IBOutlet var mapView: MKMapView!
@@ -19,16 +22,19 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet var commentLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var mapHeight: NSLayoutConstraint!
+    @IBOutlet var fullscreenButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         guard let location = location else { return }
 
+        orginalMapHeigh = mapHeight.multiplier
+
         mapView.delegate = self
         mapView.centerOnLocation(location.coordinate, animated: false, multiplier: 10.0)
 
-        let pin = MKPointAnnotation()
         pin.coordinate = location.coordinate
         mapView.addAnnotation(pin)
 
@@ -57,9 +63,29 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
 
+    func animateMapHeight() {
+        UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
+            }, completion: nil)
+    }
+
     @IBAction func directionsButtonPressed(sender: AnyObject) {
         if let location = location {
             openInAppleMaps(location)
+        }
+    }
+
+    @IBAction func fullscreenButtonPressed(sender: AnyObject) {
+        if fullScreen == false {
+            fullScreen = true
+            fullscreenButton.image = UIImage.init(named: "ic_fullscreen_exit")
+            mapHeight = mapHeight.setMultiplier(1.0)
+            animateMapHeight()
+        } else {
+            fullScreen = false
+            fullscreenButton.image = UIImage.init(named: "ic_fullscreen")
+            mapHeight = mapHeight.setMultiplier(orginalMapHeigh)
+            animateMapHeight()
         }
     }
 }
