@@ -90,18 +90,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
         checkForUpdates()
 
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.requestWhenInUseAuthorization()
+
         if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             locationManager.startUpdatingLocation()
         }
 
+        if let locations = retrieveLocations() {
+            self.clusterManager.addAnnotations(locations)
+        }
         clusterManager.delegate = self
         clusterManager.maxZoomLevel = 10
-        if let locations = retrieveLocations() {
-            clusterManager.addAnnotations(locations)
-        }
 
         mapView.delegate = self
         mapView.showsScale = true
