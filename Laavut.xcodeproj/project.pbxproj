@@ -21,6 +21,8 @@
 		CC2A73091D3F81A6004F7D0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC2A73081D3F81A6004F7D0B /* Assets.xcassets */; };
 		CC2A730C1D3F81A6004F7D0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC2A730A1D3F81A6004F7D0B /* LaunchScreen.storyboard */; };
 		CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAE88391D40DE3600B9C08F /* Network.swift */; };
+		CCC7841F1D477EB600E6D316 /* AnnotationClustering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC7841D1D477EB600E6D316 /* AnnotationClustering.framework */; };
+		CCC784201D477EB600E6D316 /* SwiftyXMLParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC7841E1D477EB600E6D316 /* SwiftyXMLParser.framework */; };
 		CCE07A5C1D425CD30011057F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE07A5B1D425CD30011057F /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		CC2A730B1D3F81A6004F7D0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC2A730D1D3F81A6004F7D0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCAE88391D40DE3600B9C08F /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		CCC7841D1D477EB600E6D316 /* AnnotationClustering.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AnnotationClustering.framework; path = Carthage/Build/iOS/AnnotationClustering.framework; sourceTree = "<group>"; };
+		CCC7841E1D477EB600E6D316 /* SwiftyXMLParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyXMLParser.framework; path = Carthage/Build/iOS/SwiftyXMLParser.framework; sourceTree = "<group>"; };
 		CCE07A5B1D425CD30011057F /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,7 +54,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC01E86E1D475E1D00763B65 /* Crashlytics.framework in Frameworks */,
+				CCC784201D477EB600E6D316 /* SwiftyXMLParser.framework in Frameworks */,
 				CC01E86D1D475E1D00763B65 /* Fabric.framework in Frameworks */,
+				CCC7841F1D477EB600E6D316 /* AnnotationClustering.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +87,8 @@
 		CC2A72F51D3F81A5004F7D0B = {
 			isa = PBXGroup;
 			children = (
+				CCC7841D1D477EB600E6D316 /* AnnotationClustering.framework */,
+				CCC7841E1D477EB600E6D316 /* SwiftyXMLParser.framework */,
 				CC01E86B1D475E1D00763B65 /* Fabric.framework */,
 				CC01E86C1D475E1D00763B65 /* Crashlytics.framework */,
 				CC2A73001D3F81A6004F7D0B /* Laavut */,
