@@ -99,9 +99,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
         if let locations = retrieveLocations() {
             clusterManager.addAnnotations(locations)
-            clusterManager.delegate = self
-            clusterManager.maxZoomLevel = 10
         }
+        clusterManager.delegate = self
+        clusterManager.maxZoomLevel = 10
 
         mapView.delegate = self
         mapView.showsScale = true
