@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A1124351D46696700666561 /* AnnotationClustering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1124331D46696700666561 /* AnnotationClustering.framework */; };
-		4A1124361D46696700666561 /* AnnotationClustering.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1124331D46696700666561 /* AnnotationClustering.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4A1124371D46696700666561 /* SwiftyXMLParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1124341D46696700666561 /* SwiftyXMLParser.framework */; };
-		4A1124381D46696700666561 /* SwiftyXMLParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1124341D46696700666561 /* SwiftyXMLParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A1A6F581D46B2C200395938 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A6F571D46B2C200395938 /* MKMapViewExtension.swift */; };
 		4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADEF3B71D4151440013A80F /* NSDateExtension.swift */; };
 		CC01E8691D4754DA00763B65 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC01E8681D4754DA00763B65 /* NSLayoutConstraintExtension.swift */; };
@@ -28,21 +24,6 @@
 		CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAE88391D40DE3600B9C08F /* Network.swift */; };
 		CCE07A5C1D425CD30011057F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE07A5B1D425CD30011057F /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4A1124391D46696700666561 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4A1124361D46696700666561 /* AnnotationClustering.framework in Embed Frameworks */,
-				4A1124381D46696700666561 /* SwiftyXMLParser.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4A1124331D46696700666561 /* AnnotationClustering.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AnnotationClustering.framework; path = Carthage/Build/iOS/AnnotationClustering.framework; sourceTree = "<group>"; };
@@ -72,8 +53,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1124351D46696700666561 /* AnnotationClustering.framework in Frameworks */,
-				4A1124371D46696700666561 /* SwiftyXMLParser.framework in Frameworks */,
 				CC01E86E1D475E1D00763B65 /* Crashlytics.framework in Frameworks */,
 				CC01E86D1D475E1D00763B65 /* Fabric.framework in Frameworks */,
 			);
@@ -158,7 +137,6 @@
 				CC2A72FA1D3F81A6004F7D0B /* Sources */,
 				CC2A72FB1D3F81A6004F7D0B /* Frameworks */,
 				CC2A72FC1D3F81A6004F7D0B /* Resources */,
-				4A1124391D46696700666561 /* Embed Frameworks */,
 				4A1AB8BA1D46A02D0005379F /* ShellScript */,
 				CC01E86A1D475DF300763B65 /* ShellScript */,
 			);
@@ -326,7 +304,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -366,7 +344,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
