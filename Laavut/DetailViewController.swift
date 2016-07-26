@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import AddressBook
+import Fabric
+import Crashlytics
 
 class DetailViewController: UIViewController, MKMapViewDelegate {
     let regionRadius: CLLocationDistance = 1000
@@ -72,6 +74,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     @IBAction func directionsButtonPressed(sender: AnyObject) {
         if let location = location {
             openInAppleMaps(location)
+            Answers.logCustomEventWithName("Button Pressed", customAttributes: ["Button": "Directions button"])
         }
     }
 
@@ -81,6 +84,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
             fullscreenButton.image = UIImage.init(named: "ic_fullscreen_exit")
             mapHeight = mapHeight.setMultiplier(1.0)
             animateMapHeight()
+            Answers.logCustomEventWithName("Button Pressed", customAttributes: ["Button": "Fullscreen button"])
         } else {
             fullScreen = false
             fullscreenButton.image = UIImage.init(named: "ic_fullscreen")

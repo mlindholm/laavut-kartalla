@@ -11,6 +11,8 @@ import MapKit
 import CoreLocation
 import SwiftyXMLParser
 import AnnotationClustering
+import Fabric
+import Crashlytics
 
 class Location: NSObject, MKAnnotation {
     let latitude: Double
@@ -177,6 +179,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         self.performSegueWithIdentifier("showDetail", sender: view)
+        Answers.logCustomEventWithName("Button Pressed", customAttributes: ["Button": "Pin callout accessory"])
     }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -191,6 +194,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     @IBAction func locateButtonPressed(sender: AnyObject) {
         locationManager.startUpdatingLocation()
+        Answers.logCustomEventWithName("Button Pressed", customAttributes: ["Button": "Locate me button"])
     }
 
     //MARK: - Locations
