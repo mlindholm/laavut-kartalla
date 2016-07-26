@@ -23,7 +23,7 @@
 		CC2A73091D3F81A6004F7D0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC2A73081D3F81A6004F7D0B /* Assets.xcassets */; };
 		CC2A730C1D3F81A6004F7D0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC2A730A1D3F81A6004F7D0B /* LaunchScreen.storyboard */; };
 		CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAE88391D40DE3600B9C08F /* Network.swift */; };
-		CCE07A5C1D425CD30011057F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE07A5B1D425CD30011057F /* Colors.swift */; };
+		CCE07A5C1D425CD30011057F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE07A5B1D425CD30011057F /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,7 +58,7 @@
 		CC2A730B1D3F81A6004F7D0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC2A730D1D3F81A6004F7D0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCAE88391D40DE3600B9C08F /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		CCE07A5B1D425CD30011057F /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CCE07A5B1D425CD30011057F /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			children = (
 				4ADEF3B71D4151440013A80F /* NSDateExtension.swift */,
 				CC1C34A51D42093300623F17 /* StringExtension.swift */,
-				CCE07A5B1D425CD30011057F /* Colors.swift */,
+				CCE07A5B1D425CD30011057F /* UIColorExtension.swift */,
 				4A1A6F571D46B2C200395938 /* MKMapViewExtension.swift */,
 			);
 			name = Extensions;
@@ -231,7 +231,7 @@
 			files = (
 				4A1A6F581D46B2C200395938 /* MKMapViewExtension.swift in Sources */,
 				CCAE883A1D40DE3600B9C08F /* Network.swift in Sources */,
-				CCE07A5C1D425CD30011057F /* Colors.swift in Sources */,
+				CCE07A5C1D425CD30011057F /* UIColorExtension.swift in Sources */,
 				4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */,
 				CC1C34A61D42093300623F17 /* StringExtension.swift in Sources */,
 				CC2A73041D3F81A6004F7D0B /* MapViewController.swift in Sources */,

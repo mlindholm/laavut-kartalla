@@ -85,6 +85,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.translucent = false
+
         checkForUpdates()
 
         self.locationManager.requestWhenInUseAuthorization()
@@ -105,7 +107,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.delegate = self
         mapView.showsScale = true
         mapView.centerOnLocation(initialLocation, animated: false, multiplier: 100.0)
-
 
         if let coordinate = mapView.userLocation.location?.coordinate{
             mapView.setCenterCoordinate(coordinate, animated: false)
@@ -148,7 +149,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             } else {
                 let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                 pinView.canShowCallout = true
-                pinView.pinTintColor = Colors.Green
+                pinView.pinTintColor = UIColor.green()
                 let btn = UIButton(type: .DetailDisclosure)
                 pinView.rightCalloutAccessoryView = btn
                 return pinView

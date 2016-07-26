@@ -16,11 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        self.window?.tintColor = Colors.Green
-        UINavigationBar.appearance().barTintColor = Colors.Green
+        self.window?.tintColor = UIColor.green()
+        UINavigationBar.appearance().barTintColor = UIColor.green()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        UITabBar.appearance().tintColor = Colors.Green
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 
         return true

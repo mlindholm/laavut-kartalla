@@ -46,7 +46,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-        pinView.pinTintColor = Colors.Green
+        pinView.pinTintColor = UIColor.green()
         return pinView
     }
 
