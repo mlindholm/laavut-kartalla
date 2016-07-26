@@ -14,6 +14,8 @@
 		4A1A6F581D46B2C200395938 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A6F571D46B2C200395938 /* MKMapViewExtension.swift */; };
 		4ADEF3B81D4151440013A80F /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADEF3B71D4151440013A80F /* NSDateExtension.swift */; };
 		CC01E8691D4754DA00763B65 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC01E8681D4754DA00763B65 /* NSLayoutConstraintExtension.swift */; };
+		CC01E86D1D475E1D00763B65 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC01E86B1D475E1D00763B65 /* Fabric.framework */; };
+		CC01E86E1D475E1D00763B65 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC01E86C1D475E1D00763B65 /* Crashlytics.framework */; };
 		CC0726751D40D6EF00BEEC07 /* Laavut-kodat.gpx in Resources */ = {isa = PBXBuildFile; fileRef = CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */; };
 		CC1C34A41D41207C00623F17 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C34A31D41207C00623F17 /* Reachability.swift */; };
 		CC1C34A61D42093300623F17 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C34A51D42093300623F17 /* StringExtension.swift */; };
@@ -48,6 +50,8 @@
 		4A1A6F571D46B2C200395938 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		4ADEF3B71D4151440013A80F /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		CC01E8681D4754DA00763B65 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
+		CC01E86B1D475E1D00763B65 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		CC01E86C1D475E1D00763B65 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		CC0726741D40D6EF00BEEC07 /* Laavut-kodat.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Laavut-kodat.gpx"; path = "Laavut/Laavut-kodat.gpx"; sourceTree = "<group>"; };
 		CC1C34A31D41207C00623F17 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		CC1C34A51D42093300623F17 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 			files = (
 				4A1124351D46696700666561 /* AnnotationClustering.framework in Frameworks */,
 				4A1124371D46696700666561 /* SwiftyXMLParser.framework in Frameworks */,
+				CC01E86E1D475E1D00763B65 /* Crashlytics.framework in Frameworks */,
+				CC01E86D1D475E1D00763B65 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +106,8 @@
 		CC2A72F51D3F81A5004F7D0B = {
 			isa = PBXGroup;
 			children = (
+				CC01E86B1D475E1D00763B65 /* Fabric.framework */,
+				CC01E86C1D475E1D00763B65 /* Crashlytics.framework */,
 				4A1124331D46696700666561 /* AnnotationClustering.framework */,
 				4A1124341D46696700666561 /* SwiftyXMLParser.framework */,
 				CC2A73001D3F81A6004F7D0B /* Laavut */,
@@ -152,6 +160,7 @@
 				CC2A72FC1D3F81A6004F7D0B /* Resources */,
 				4A1124391D46696700666561 /* Embed Frameworks */,
 				4A1AB8BA1D46A02D0005379F /* ShellScript */,
+				CC01E86A1D475DF300763B65 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -224,6 +233,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		CC01E86A1D475DF300763B65 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 18b7be9fd8d6f74333326228f9b7b17beb0e6a5c 1843997cd076553a4e3df764b4d845f5f0ebee069aa40b5c31973bcde60aaefa";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -359,6 +381,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Laavut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -374,6 +397,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Laavut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
