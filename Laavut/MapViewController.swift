@@ -76,6 +76,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let defaults = NSUserDefaults.standardUserDefaults()
     let initialLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
     let clusterManager = ClusterManager()
+    let searchController = UISearchController(searchResultsController: nil)
     var fetchAllLocationTask: NSURLSessionTask?
 
     @IBOutlet var mapView: MKMapView!
@@ -88,6 +89,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
         self.navigationController?.navigationBar.translucent = false
 
+        configureSearchController()
         checkForUpdates()
 
         locationManager.requestWhenInUseAuthorization()
@@ -249,6 +251,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             return NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location]
         }
         return nil
+    }
+
+    // MARK: - Search 
+
+    func configureSearchController() {
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.autocapitalizationType = .None
+        searchController.searchBar.spellCheckingType = .No
+        searchController.searchBar.barStyle = .Black
+        self.navigationItem.titleView = self.searchController.searchBar
     }
 
     // MARK: - Navigation
