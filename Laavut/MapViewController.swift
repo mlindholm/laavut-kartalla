@@ -120,8 +120,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     //MARK: - Map
 
-    func cellSizeFactorForManager(manager: ClusterManager) -> CGFloat {
-        return 1.0
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.75, longitudeDelta: 0.75))
+            self.mapView.setRegion(region, animated: false)
+            locationManager.stopUpdatingLocation()
+        }
+    }
+
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool){
+        NSOperationQueue().addOperationWithBlock { [unowned self] in
+            let mapBoundsWidth = Double(mapView.bounds.size.width)
+            let mapRectWidth: Double = mapView.visibleMapRect.size.width
+            let scale: Double = mapBoundsWidth / mapRectWidth
+            let annotationArray = self.clusterManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale:scale)
+            self.clusterManager.displayAnnotations(annotationArray, mapView: mapView)
+        }
     }
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -158,16 +172,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
 
-    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool){
-        NSOperationQueue().addOperationWithBlock { [unowned self] in
-            let mapBoundsWidth = Double(mapView.bounds.size.width)
-            let mapRectWidth: Double = mapView.visibleMapRect.size.width
-            let scale: Double = mapBoundsWidth / mapRectWidth
-            let annotationArray = self.clusterManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale:scale)
-            self.clusterManager.displayAnnotations(annotationArray, mapView: mapView)
-        }
-    }
-
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         if let view = view as? AnnotationClusterView {
             guard let coordinate = view.annotation?.coordinate else { return }
@@ -184,12 +188,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         Answers.logCustomEventWithName("Button Pressed", customAttributes: ["Button": "Pin callout accessory"])
     }
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.75, longitudeDelta: 0.75))
-            self.mapView.setRegion(region, animated: false)
-            locationManager.stopUpdatingLocation()
-        }
+    func cellSizeFactorForManager(manager: ClusterManager) -> CGFloat {
+        return 1.0
     }
 
     //MARK: - Actions
