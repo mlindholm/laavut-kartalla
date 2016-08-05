@@ -137,7 +137,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 clusterView.reuseWithAnnotation(cluster)
                 return clusterView
             } else {
-                let clusterView = AnnotationClusterView(annotation: cluster, reuseIdentifier: reuseId, options: nil)
+                let options = AnnotationClusterViewOptions(smallClusterImage: "cluster_small", mediumClusterImage: "cluster_medium", largeClusterImage: "cluster_large")
+                let clusterView = AnnotationClusterView(annotation: cluster, reuseIdentifier: reuseId, options: options)
                 return clusterView
             }
 

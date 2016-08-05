@@ -102,7 +102,6 @@ public class AnnotationClusterView : MKAnnotationView {
 
         switch count {
         case 0...5:
-            fontSize = 12
             if let options = options {
                 loadExternalImage = true;
                 imageName = options.smallClusterImage
@@ -112,7 +111,6 @@ public class AnnotationClusterView : MKAnnotationView {
             }
             
         case 6...15:
-            fontSize = 13
             if let options = options {
                 loadExternalImage = true;
                 imageName = options.mediumClusterImage
@@ -122,7 +120,6 @@ public class AnnotationClusterView : MKAnnotationView {
             }
             
         default:
-            fontSize = 14
             if let options = options {
                 loadExternalImage = true;
                 imageName = options.largeClusterImage
