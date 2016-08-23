@@ -71,7 +71,7 @@ class Location: NSObject, MKAnnotation {
     }
 }
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, ClusterManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, ClusterManagerDelegate, UISearchBarDelegate {
     let locationManager = CLLocationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
     let initialLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
@@ -256,12 +256,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: - Search 
 
     func configureSearchController() {
+        searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
         searchController.searchBar.autocapitalizationType = .None
         searchController.searchBar.spellCheckingType = .No
-        searchController.searchBar.barStyle = .Black
         self.navigationItem.titleView = self.searchController.searchBar
+    }
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func filterContentForSearchText(searchText: String) {
+        print(searchText)
+
+        if searchController.active {
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+            self.navigationItem.rightBarButtonItem = locateButton
+        }
     }
 
     // MARK: - Navigation
@@ -274,5 +289,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 vc.location = locationToPass
             }
         }
+    }
+}
+
+extension MapViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
