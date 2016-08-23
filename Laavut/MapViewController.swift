@@ -81,6 +81,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var locateButton: UIBarButtonItem!
+    @IBOutlet var searchButton: UIBarButtonItem!
 
     //MARK: - Lifecycle
 
@@ -89,7 +90,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
         self.navigationController?.navigationBar.translucent = false
 
-        configureSearchController()
         checkForUpdates()
 
         locationManager.requestWhenInUseAuthorization()
@@ -201,6 +201,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         Answers.logCustomEventWithName("Button Pressed", customAttributes: ["Button": "Locate me button"])
     }
 
+    @IBAction func searchButtonPressed(sender: AnyObject) {
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.autocapitalizationType = .None
+        searchController.searchBar.spellCheckingType = .No
+        searchController.searchBar.becomeFirstResponder()
+        self.navigationItem.titleView = self.searchController.searchBar
+        self.navigationItem.rightBarButtonItem = nil
+        self.navigationItem.leftBarButtonItem = nil
+    }
+
     //MARK: - Locations
 
     func checkForUpdates() {
@@ -253,17 +266,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         return nil
     }
 
-    // MARK: - Search 
-
-    func configureSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.delegate = self
-        searchController.searchBar.autocapitalizationType = .None
-        searchController.searchBar.spellCheckingType = .No
-        self.navigationItem.titleView = self.searchController.searchBar
-    }
+    // MARK: - Search
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -272,9 +275,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func filterContentForSearchText(searchText: String) {
         print(searchText)
 
-        if searchController.active {
-            self.navigationItem.rightBarButtonItem = nil
-        } else {
+        if !searchController.active {
+            self.navigationItem.titleView = nil
+            self.navigationItem.leftBarButtonItem = searchButton
             self.navigationItem.rightBarButtonItem = locateButton
         }
     }

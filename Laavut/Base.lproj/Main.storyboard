@@ -32,6 +32,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Laavut" id="wwc-2P-qIB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="s6b-v5-y9d">
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="BYZ-38-t0r" id="S6U-hT-VFU"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_location" id="AUd-Ag-rUZ">
                             <connections>
                                 <action selector="locateButtonPressed:" destination="BYZ-38-t0r" id="1rd-r3-Hvd"/>
@@ -41,6 +46,7 @@
                     <connections>
                         <outlet property="locateButton" destination="AUd-Ag-rUZ" id="qTu-DF-NCm"/>
                         <outlet property="mapView" destination="7nb-Qn-Myv" id="agG-M9-XGI"/>
+                        <outlet property="searchButton" destination="s6b-v5-y9d" id="aI5-Ao-0eM"/>
                         <segue destination="O5x-sF-rEL" kind="show" identifier="showDetail" id="wWw-zD-J11"/>
                     </connections>
                 </viewController>
