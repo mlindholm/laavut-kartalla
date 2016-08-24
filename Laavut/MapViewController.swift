@@ -78,6 +78,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let clusterManager = ClusterManager()
     let searchController = UISearchController(searchResultsController: nil)
     var fetchAllLocationTask: NSURLSessionTask?
+    var filteredLocations = [Location]()
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var locateButton: UIBarButtonItem!
@@ -295,14 +296,39 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        if let selected = filteredLocations.first as? MKAnnotation {
+            mapView.centerOnLocation(selected.coordinate, animated: true, multiplier: 10.0)
+        }
     }
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         hideSearchBar()
     }
 
     func filterContentForSearchText(searchText: String) {
-        print(searchText)
+        guard let locationsArray = retrieveLocations() else { return }
+
+        let searchTextArray = searchText.lowercaseString.componentsSeparatedByString(" ")
+        var searchResults: [Set<Location>] = []
+
+        for item in searchTextArray where !item.isEmpty {
+            let searchResult = locationsArray.filter { location in
+                let title = location.title!.lowercaseString.containsString(item)
+                return title
+            }
+            searchResults.append(Set(searchResult))
+        }
+
+        if let first = searchResults.first {
+            var result = first
+            for item in searchResults[1..<searchResults.count] {
+                result = result.intersect(item)
+            }
+            filteredLocations = Array(result)
+        } else {
+            filteredLocations = []
+        }
     }
 
     // MARK: - Navigation
