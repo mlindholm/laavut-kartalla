@@ -202,16 +202,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
 
     @IBAction func searchButtonPressed(sender: AnyObject) {
-        searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.delegate = self
-        searchController.searchBar.autocapitalizationType = .None
-        searchController.searchBar.spellCheckingType = .No
-        searchController.searchBar.becomeFirstResponder()
-        self.navigationItem.titleView = self.searchController.searchBar
-        self.navigationItem.rightBarButtonItem = nil
-        self.navigationItem.leftBarButtonItem = nil
+        configureSearchBar()
+        showSearchBar()
     }
 
     //MARK: - Locations
@@ -268,18 +260,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     // MARK: - Search
 
+    func configureSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.autocapitalizationType = .None
+        searchController.searchBar.spellCheckingType = .No
+    }
+
+    func showSearchBar() {
+        navigationItem.titleView = self.searchController.searchBar
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.rightBarButtonItem = nil
+        searchController.searchBar.alpha = 0
+        UIView.animateWithDuration(0.2, animations: {
+            self.searchController.searchBar.alpha = 1
+            }, completion: { finished in
+                self.searchController.searchBar.becomeFirstResponder()
+        })
+    }
+
+    func hideSearchBar() {
+        UIView.animateWithDuration(0.2, animations: {
+            self.searchController.searchBar.alpha = 0
+            }, completion: { finished in
+                self.navigationItem.titleView = nil
+                self.navigationItem.leftBarButtonItem = self.searchButton
+                self.navigationItem.rightBarButtonItem = self.locateButton
+        })
+    }
+
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
 
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        hideSearchBar()
+    }
+
     func filterContentForSearchText(searchText: String) {
         print(searchText)
-
-        if !searchController.active {
-            self.navigationItem.titleView = nil
-            self.navigationItem.leftBarButtonItem = searchButton
-            self.navigationItem.rightBarButtonItem = locateButton
-        }
     }
 
     // MARK: - Navigation
