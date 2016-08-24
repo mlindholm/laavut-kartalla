@@ -30,6 +30,8 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.translucent = false
+
         guard let location = location else { return }
 
         orginalMapHeight = mapHeight.multiplier
