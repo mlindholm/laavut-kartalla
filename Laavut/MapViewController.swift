@@ -326,6 +326,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 result = result.intersect(item)
             }
             filteredLocations = Array(result)
+            print(filteredLocations.count)
+            for item in filteredLocations {
+                print(item.title!)
+            }
         } else {
             filteredLocations = []
         }
