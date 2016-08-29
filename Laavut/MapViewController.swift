@@ -14,71 +14,13 @@ import AnnotationClustering
 import Fabric
 import Crashlytics
 
-class Location: NSObject, MKAnnotation {
-    let latitude: Double
-    let longitude: Double
-    let title: String?
-    let subtitle: String?
-    let time: NSDate?
-    let comment: String?
-    var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-
-    init?(xml: XML.Accessor) {
-        guard let latitude = xml.attributes["lat"],
-            let longitude = xml.attributes["lon"],
-            let title = xml["name"].text,
-            let time = xml["time"].text?.stringToDate(),
-            let subtitle = xml["sym"].text else {
-                return nil
-        }
-
-        switch subtitle {
-        case "Campground":
-            self.subtitle = "Kota tien varressa"
-        case "Lodge":
-            self.subtitle = "Laavu maastossa"
-        case "Picnic Area":
-            self.subtitle = "Laavu tien varressa"
-        default:
-            self.subtitle = nil
-        }
-
-        self.latitude = Double(latitude)!
-        self.longitude = Double(longitude)!
-        self.title = title
-        self.comment = xml["cmt"].text
-        self.time = time
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        latitude = aDecoder.decodeObjectForKey("latitude") as! Double
-        longitude = aDecoder.decodeObjectForKey("longitude") as! Double
-        title = aDecoder.decodeObjectForKey("title") as? String
-        subtitle = aDecoder.decodeObjectForKey("subtitle") as? String
-        time = aDecoder.decodeObjectForKey("time") as? NSDate
-        comment = aDecoder.decodeObjectForKey("comment") as? String
-    }
-
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(latitude, forKey: "latitude")
-        aCoder.encodeObject(longitude, forKey: "longitude")
-        aCoder.encodeObject(title, forKey: "title")
-        aCoder.encodeObject(subtitle, forKey: "subtitle")
-        aCoder.encodeObject(time, forKey: "time")
-        aCoder.encodeObject(comment, forKey: "comment")
-    }
-}
-
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, ClusterManagerDelegate, UISearchBarDelegate {
     let locationManager = CLLocationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
     let initialLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
     let clusterManager = ClusterManager()
-    let searchController = UISearchController(searchResultsController: nil)
+    var searchController = UISearchController(searchResultsController: nil)
     var fetchAllLocationTask: NSURLSessionTask?
-    var filteredLocations = [Location]()
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var locateButton: UIBarButtonItem!
@@ -235,36 +177,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
         if reachability.isReachable() {
             fetchAllLocationTask = Network.load() { [weak self] locations in
-                self?.saveLocations(locations)
+                saveLocations(locations)
                 self?.clusterManager.addAnnotations(locations)
             }
         }
     }
 
-    func archiveLocations(locations:[Location]) -> NSData {
-        let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(locations as NSArray)
-        return archivedObject
-    }
-
-    func saveLocations(locations: [Location]) {
-        let archivedObject = archiveLocations(locations)
-        defaults.setObject(archivedObject, forKey: "annotations")
-        defaults.setObject(NSDate(), forKey: "saveLocationsDate")
-    }
-
-    func retrieveLocations() -> [Location]? {
-        if let unarchivedObject = NSUserDefaults.standardUserDefaults().objectForKey("annotations") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? [Location]
-        }
-        return nil
-    }
-
     // MARK: - Search
 
     func configureSearchBar() {
-        searchController.searchResultsUpdater = self
+        let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
+        searchController = UISearchController(searchResultsController: locationSearchTable)
+        searchController.searchResultsUpdater = locationSearchTable
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
         searchController.searchBar.delegate = self
         searchController.searchBar.autocapitalizationType = .None
         searchController.searchBar.spellCheckingType = .No
@@ -296,43 +223,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        if let selected = filteredLocations.first as? MKAnnotation {
-            mapView.centerOnLocation(selected.coordinate, animated: true, multiplier: 10.0)
-        }
     }
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         hideSearchBar()
-    }
-
-    func filterContentForSearchText(searchText: String) {
-        guard let locationsArray = retrieveLocations() else { return }
-
-        let searchTextArray = searchText.lowercaseString.componentsSeparatedByString(" ")
-        var searchResults: [Set<Location>] = []
-
-        for item in searchTextArray where !item.isEmpty {
-            let searchResult = locationsArray.filter { location in
-                let title = location.title!.lowercaseString.containsString(item)
-                return title
-            }
-            searchResults.append(Set(searchResult))
-        }
-
-        if let first = searchResults.first {
-            var result = first
-            for item in searchResults[1..<searchResults.count] {
-                result = result.intersect(item)
-            }
-            filteredLocations = Array(result)
-            print(filteredLocations.count)
-            for item in filteredLocations {
-                print(item.title!)
-            }
-        } else {
-            filteredLocations = []
-        }
     }
 
     // MARK: - Navigation
@@ -345,11 +240,5 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 vc.location = locationToPass
             }
         }
-    }
-}
-
-extension MapViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
