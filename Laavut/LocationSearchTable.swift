@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationSearchTable: UITableViewController {
+class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
     var filteredLocations = [Location]()
 
     override func viewDidLoad() {
@@ -35,17 +35,22 @@ class LocationSearchTable: UITableViewController {
         return cell
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
+    // MARK: - Navigation
 
-    /*
-     // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showSearchDetail" {
+            if let vc = segue.destinationViewController as? DetailViewController {
+                guard let indexPath = self.tableView?.indexPathForSelectedRow else { return }
+                vc.location = filteredLocations[indexPath.row]
+            }
+        }
+    }
 
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Search
 
     func filterContentForSearchText(searchText: String) {
         guard let locationsArray = retrieveLocations() else { return }
@@ -67,19 +72,13 @@ class LocationSearchTable: UITableViewController {
                 result = result.intersect(item)
             }
             filteredLocations = Array(result)
-            print(filteredLocations.count)
-            for item in filteredLocations {
-                print(item.title!)
-            }
         } else {
             filteredLocations = []
         }
 
         tableView.reloadData()
     }
-}
 
-extension LocationSearchTable: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }

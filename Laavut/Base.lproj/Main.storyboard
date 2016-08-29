@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L7N-cj-hfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1988" y="462"/>
+            <point key="canvasLocation" x="2080" y="462"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="Uh5-Bp-XLW">
@@ -191,6 +191,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="O5x-sF-rEL" kind="show" identifier="showSearchDetail" id="v1i-7Z-U5F"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -201,7 +204,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7SD-Kz-Zuh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2754" y="462"/>
+            <point key="canvasLocation" x="1260" y="-343"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NWW-Od-3vP">
@@ -226,4 +229,7 @@
         <image name="ic_fullscreen" width="24" height="24"/>
         <image name="ic_location" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wWw-zD-J11"/>
+    </inferredMetricsTieBreakers>
 </document>

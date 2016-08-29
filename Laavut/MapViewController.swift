@@ -191,11 +191,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchController.searchResultsUpdater = locationSearchTable
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
         searchController.searchBar.delegate = self
         searchController.searchBar.autocapitalizationType = .None
         searchController.searchBar.spellCheckingType = .No
         searchController.searchBar.tintColor = UIColor.green()
+        self.definesPresentationContext = true
         UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
     }
 
@@ -234,7 +234,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-
             if let vc = segue.destinationViewController as? DetailViewController {
                 let locationToPass = sender?.annotation as? Location
                 vc.location = locationToPass
