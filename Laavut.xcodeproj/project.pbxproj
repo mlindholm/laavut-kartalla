@@ -116,9 +116,9 @@
 				CC1C34A71D42108700623F17 /* DetailViewController.swift */,
 				CCAE88391D40DE3600B9C08F /* Network.swift */,
 				CC1C34A31D41207C00623F17 /* Reachability.swift */,
-				CC2A730D1D3F81A6004F7D0B /* Info.plist */,
 				4A5179B41D74B10D00DBCD56 /* LocationSearchTable.swift */,
 				4A5179B61D74B51D00DBCD56 /* Location.swift */,
+				CC2A730D1D3F81A6004F7D0B /* Info.plist */,
 			);
 			path = Laavut;
 			sourceTree = "<group>";
