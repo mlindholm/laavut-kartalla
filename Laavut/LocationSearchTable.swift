@@ -87,6 +87,7 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
 
         if !searchText.isEmpty && filteredLocations.isEmpty {
             emptyState.hidden = false
+            emptyState.text = "Ei tuloksia haulla '\(searchText)'"
         } else {
             emptyState.hidden = true
         }
