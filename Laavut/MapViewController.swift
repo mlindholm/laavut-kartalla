@@ -19,7 +19,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let defaults = NSUserDefaults.standardUserDefaults()
     let initialLocation = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
     let clusterManager = ClusterManager()
-    var searchController = UISearchController(searchResultsController: nil)
+    var searchController: UISearchController?
     var fetchAllLocationTask: NSURLSessionTask?
     var selectedSearchLocation: Location?
 
@@ -198,39 +198,39 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             locationSearchTable.currentLocation = current
         }
         searchController = UISearchController(searchResultsController: locationSearchTable)
-        searchController.searchResultsUpdater = locationSearchTable
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.delegate = self
-        searchController.searchBar.autocapitalizationType = .None
-        searchController.searchBar.spellCheckingType = .No
-        searchController.searchBar.tintColor = UIColor.green()
+        searchController?.searchResultsUpdater = locationSearchTable
+        searchController?.hidesNavigationBarDuringPresentation = false
+        searchController?.dimsBackgroundDuringPresentation = true
+        searchController?.searchBar.delegate = self
+        searchController?.searchBar.autocapitalizationType = .None
+        searchController?.searchBar.spellCheckingType = .No
+        searchController?.searchBar.tintColor = UIColor.green()
         definesPresentationContext = true
         UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
     }
 
     func showSearchBar() {
-        navigationItem.titleView = self.searchController.searchBar
+        navigationItem.titleView = self.searchController?.searchBar
         navigationItem.leftBarButtonItem = nil
         navigationItem.rightBarButtonItem = nil
-        searchController.searchBar.alpha = 0
+        searchController?.searchBar.alpha = 0
         UIView.animateWithDuration(0.2, animations: {
-            self.searchController.searchBar.alpha = 1
+            self.searchController?.searchBar.alpha = 1
             }, completion: { finished in
-                self.searchController.searchBar.becomeFirstResponder()
-                self.searchController.active = true
+                self.searchController?.searchBar.becomeFirstResponder()
+                self.searchController?.active = true
         })
     }
 
     func hideSearchBar() {
         UIView.animateWithDuration(0.2, animations: {
-            self.searchController.searchBar.alpha = 0
+            self.searchController?.searchBar.alpha = 0
             }, completion: { finished in
                 self.navigationItem.titleView = nil
                 self.navigationItem.leftBarButtonItem = self.searchButton
                 self.navigationItem.rightBarButtonItem = self.locateButton
-                self.searchController.searchBar.resignFirstResponder()
-                self.searchController.active = false
+                self.searchController?.searchBar.resignFirstResponder()
+                self.searchController?.active = false
         })
     }
 
