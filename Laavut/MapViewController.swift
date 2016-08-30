@@ -150,6 +150,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         showSearchBar()
     }
 
+    @IBAction func showSearchDetail(segue: UIStoryboardSegue) {
+        self.hideSearchBar()
+        self.performSegueWithIdentifier("showSearchDetail", sender: view)
+    }
+
+
     //MARK: - Locations
 
     func checkForUpdates() {
@@ -196,6 +202,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchController.searchBar.autocapitalizationType = .None
         searchController.searchBar.spellCheckingType = .No
         searchController.searchBar.tintColor = UIColor.green()
+        searchController.searchBar.setShowsCancelButton(true, animated: false)
         self.definesPresentationContext = true
         UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
     }
@@ -229,11 +236,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         hideSearchBar()
-    }
-
-    @IBAction
-    func showSearchDetail(segue: UIStoryboardSegue) {
-        self.performSegueWithIdentifier("showSearchDetail", sender: view)
     }
 
     // MARK: - Navigation
