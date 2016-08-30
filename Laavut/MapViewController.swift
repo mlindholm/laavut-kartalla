@@ -194,6 +194,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     func configureSearchBar() {
         let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
+        if let current = locationManager.location {
+            locationSearchTable.currentLocation = current
+        }
         searchController = UISearchController(searchResultsController: locationSearchTable)
         searchController.searchResultsUpdater = locationSearchTable
         searchController.hidesNavigationBarDuringPresentation = false

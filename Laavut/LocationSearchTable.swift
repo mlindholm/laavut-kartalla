@@ -9,30 +9,16 @@
 import UIKit
 import MapKit
 
-class LocationSearchTable: UITableViewController, UISearchResultsUpdating, CLLocationManagerDelegate {
-    let locationManager = CLLocationManager()
+class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
     var currentLocation = CLLocation()
     var filteredLocations = [Location]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-            locationManager.startUpdatingLocation()
-        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            currentLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            locationManager.stopUpdatingLocation()
-        }
     }
 
     // MARK: - Table view data source
