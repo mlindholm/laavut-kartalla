@@ -7,16 +7,32 @@
 //
 
 import UIKit
+import MapKit
 
-class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
+class LocationSearchTable: UITableViewController, UISearchResultsUpdating, CLLocationManagerDelegate {
+    let locationManager = CLLocationManager()
+    var currentLocation = CLLocation()
     var filteredLocations = [Location]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            locationManager.startUpdatingLocation()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            currentLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            locationManager.stopUpdatingLocation()
+        }
     }
 
     // MARK: - Table view data source
@@ -28,9 +44,13 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath)
         let location = filteredLocations[indexPath.row]
+        let toLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+
+        let distance = currentLocation.distanceFromLocation(toLocation)
+        let distanceKm = (distance/1000).roundToPlaces(1)
 
         cell.textLabel?.text = location.title
-        cell.detailTextLabel?.text = location.subtitle
+        cell.detailTextLabel?.text = "\(distanceKm) km"
 
         return cell
     }
@@ -81,5 +101,13 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func roundToPlaces(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return round(self * divisor) / divisor
     }
 }
