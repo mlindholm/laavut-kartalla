@@ -205,8 +205,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchController.searchBar.autocapitalizationType = .None
         searchController.searchBar.spellCheckingType = .No
         searchController.searchBar.tintColor = UIColor.green()
-        searchController.searchBar.setShowsCancelButton(true, animated: false)
-        self.definesPresentationContext = true
+        definesPresentationContext = true
         UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
     }
 
@@ -219,6 +218,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.searchController.searchBar.alpha = 1
             }, completion: { finished in
                 self.searchController.searchBar.becomeFirstResponder()
+                self.searchController.active = true
         })
     }
 
@@ -229,6 +229,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.navigationItem.titleView = nil
                 self.navigationItem.leftBarButtonItem = self.searchButton
                 self.navigationItem.rightBarButtonItem = self.locateButton
+                self.searchController.searchBar.resignFirstResponder()
+                self.searchController.active = false
         })
     }
 
@@ -236,8 +238,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchBar.resignFirstResponder()
     }
 
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         hideSearchBar()
     }
 
