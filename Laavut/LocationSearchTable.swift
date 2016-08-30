@@ -13,8 +13,11 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
     var currentLocation = CLLocation()
     var filteredLocations = [Location]()
 
+    @IBOutlet var emptyState: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        emptyState.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,6 +83,12 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
             filteredLocations = Array(result)
         } else {
             filteredLocations = []
+        }
+
+        if !searchText.isEmpty && filteredLocations.isEmpty {
+            emptyState.hidden = false
+        } else {
+            emptyState.hidden = true
         }
 
         tableView.reloadData()
