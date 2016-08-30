@@ -2,17 +2,17 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![Cocoapods compatible](https://cocoapod-badges.herokuapp.com/v/SwiftyXMLParser/badge.png)
 
 
-Simple XML Parser implemented by Swift
+Simple XML Parser implemented in Swift
 
 # What's this?
 This is a XML parser inspired by [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) and  [SWXMLHash](https://github.com/drmohundro/SWXMLHash).
 
-[NSXMLParser](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSXMLParser_Class/) in Foundation framework is a kind of "SAX" parser. It has a enough performance but is a little inconvenient. So we have implemented "DOM" parser wrapping it. 
+[NSXMLParser](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSXMLParser_Class/) in Foundation framework is a kind of "SAX" parser. It has enough performance but is a little inconvenient. So we have implemented "DOM" parser wrapping it. 
 
 # Feature
-- [x] access XML Document with "subscript" literal.
-- [x] access XML Document as SequenceType.
-- [x] debug wrong XML pathes easily.
+- [x] access XML Document with "subscript".
+- [x] access XML Document as Sequence.
+- [x] easy debugging XML pathes.
 
 # Requirement
 + iOS 7.0+
@@ -91,7 +91,7 @@ xml = try! XML.parse(string) // -> XML.Accessor
 let string = "<ResultSet><Result><Hit index=\"1\"><Name>Item1</Name></Hit><Hit index=\"2\"><Name>Item2</Name></Hit></Result></ResultSet>"
 let data = string.dataUsingEncoding(NSUTF8StringEncoding)
 
-xml = try! XML.parse(data) // -> XML.Accessor
+xml = XML.parse(data) // -> XML.Accessor
 ```
 
 ### 2. Access child Elements
@@ -164,19 +164,33 @@ print(xml["ResultSet", "Result", "TypoKey"]) // -> "TypoKey not found."
 + for-in
 ```swift
 for element in xml["ResultSet", "Result", "Hit"] {
-  print($0.text)
+  print(element.text)
 }
 ```
 + map
 ```swift
 xml["ResultSet", "Result", "Hit"].map { $0["Name"].text }
 ```
-+ filter
+
+## Work with Alamofire
+SwiftyXMLParser goes well with [Alamofire](https://github.com/Alamofire/Alamofire). You can parse the response easily.
+
 ```swift
-xml["ResultSet", "Result", "Hit"].filter { $0["Name"].text != "Item2" }
+import Alamofire
+import SwiftyXMLParser
+
+Alamofire.request(.GET, "https://itunes.apple.com/us/rss/topgrossingapplications/limit=10/xml")
+         .responseData { response in
+            if let data = response.data {
+                let xml = XML.parse(data)
+                print(xml["feed", "entry", 0, "title"].text) // outputs the top title of iTunes app raning.
+            }
+        }
 ```
 
-etc...
+In addition, there is the extension of Alamofire to combine with SwiftyXMLPraser. 
+
+* [Alamofire-SwiftyXMLParser](https://github.com/kazuhiro4949/Alamofire-SwiftyXMLParser)
 
 # License
 
