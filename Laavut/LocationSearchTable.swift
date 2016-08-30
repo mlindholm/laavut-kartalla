@@ -43,9 +43,9 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showSearchDetail" {
-            if let vc = segue.destinationViewController as? DetailViewController {
+            if let vc = segue.destinationViewController as? MapViewController {
                 guard let indexPath = self.tableView?.indexPathForSelectedRow else { return }
-                vc.location = filteredLocations[indexPath.row]
+                vc.selectedSearchLocation = filteredLocations[indexPath.row]
             }
         }
     }

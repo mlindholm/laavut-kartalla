@@ -21,6 +21,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let clusterManager = ClusterManager()
     var searchController = UISearchController(searchResultsController: nil)
     var fetchAllLocationTask: NSURLSessionTask?
+    var selectedSearchLocation: Location?
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var locateButton: UIBarButtonItem!
@@ -230,6 +231,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         hideSearchBar()
     }
 
+    @IBAction
+    func showSearchDetail(segue: UIStoryboardSegue) {
+        self.performSegueWithIdentifier("showSearchDetail", sender: view)
+    }
+
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -237,6 +243,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             if let vc = segue.destinationViewController as? DetailViewController {
                 let locationToPass = sender?.annotation as? Location
                 vc.location = locationToPass
+            }
+        } else if segue.identifier == "showSearchDetail", let location = selectedSearchLocation {
+            if let vc = segue.destinationViewController as? DetailViewController {
+                vc.location = location
             }
         }
     }

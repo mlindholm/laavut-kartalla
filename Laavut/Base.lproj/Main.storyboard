@@ -48,6 +48,7 @@
                         <outlet property="mapView" destination="7nb-Qn-Myv" id="agG-M9-XGI"/>
                         <outlet property="searchButton" destination="s6b-v5-y9d" id="aI5-Ao-0eM"/>
                         <segue destination="O5x-sF-rEL" kind="show" identifier="showDetail" id="wWw-zD-J11"/>
+                        <segue destination="O5x-sF-rEL" kind="show" identifier="showSearchDetail" id="d44-CN-CkK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -192,7 +193,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="O5x-sF-rEL" kind="show" identifier="showSearchDetail" id="v1i-7Z-U5F"/>
+                                    <segue destination="Pke-qx-92h" kind="unwind" identifier="showSearchDetail" unwindAction="showSearchDetail:" id="BDJ-jM-XFh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -203,6 +204,7 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7SD-Kz-Zuh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Pke-qx-92h" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1260" y="-343"/>
         </scene>
@@ -230,6 +232,6 @@
         <image name="ic_location" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wWw-zD-J11"/>
+        <segue reference="d44-CN-CkK"/>
     </inferredMetricsTieBreakers>
 </document>
