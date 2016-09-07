@@ -34,7 +34,6 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
         let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath)
         let location = filteredLocations[indexPath.row]
         let toLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-
         let distance = currentLocation.distanceFromLocation(toLocation)
         let distanceKm = (distance/1000).roundToPlaces(1)
 
@@ -80,7 +79,8 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
             for item in searchResults[1..<searchResults.count] {
                 result = result.intersect(item)
             }
-            filteredLocations = Array(result)
+            let sortedResult = result.sort({ $0.title < $1.title })
+            filteredLocations = Array(sortedResult)
         } else {
             filteredLocations = []
         }
