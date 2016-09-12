@@ -79,7 +79,12 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
             for item in searchResults[1..<searchResults.count] {
                 result = result.intersect(item)
             }
-            let sortedResult = result.sort({ $0.title < $1.title })
+            let sortedResult = result.sort({
+                guard let title1 = $0.title,
+                    let title2 = $1.title else { return false }
+                let compare = title1.localizedCaseInsensitiveCompare(title2) == .OrderedAscending
+                return compare
+            })
             filteredLocations = Array(sortedResult)
         } else {
             filteredLocations = []
