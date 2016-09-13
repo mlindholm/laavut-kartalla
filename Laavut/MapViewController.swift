@@ -204,7 +204,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchController?.searchBar.delegate = self
         searchController?.searchBar.autocapitalizationType = .None
         searchController?.searchBar.spellCheckingType = .No
-        searchController?.searchBar.tintColor = UIColor.green()
+        searchController?.searchBar.tintColor = UIColor.blue()
         definesPresentationContext = true
         UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
     }
