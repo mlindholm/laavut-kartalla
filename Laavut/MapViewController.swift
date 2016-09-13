@@ -205,33 +205,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchController?.searchBar.autocapitalizationType = .None
         searchController?.searchBar.spellCheckingType = .No
         searchController?.searchBar.tintColor = UIColor.blue()
+        searchController?.searchBar.setBackgroundImage(UIImage(), forBarPosition: .Any, barMetrics: .Default)
+        searchController?.searchBar.setShowsCancelButton(true, animated: true)
         definesPresentationContext = true
         UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
     }
 
     func showSearchBar() {
-        navigationItem.titleView = self.searchController?.searchBar
+        guard let searchBar = searchController?.searchBar else { return }
+        let viewForSearchBar = UIView.init(frame: searchBar.bounds)
+        viewForSearchBar.addSubview(searchBar)
+        navigationItem.titleView = viewForSearchBar
         navigationItem.leftBarButtonItem = nil
         navigationItem.rightBarButtonItem = nil
-        searchController?.searchBar.alpha = 0
-        UIView.animateWithDuration(0.2, animations: {
-            self.searchController?.searchBar.alpha = 1
-            }, completion: { finished in
-                self.searchController?.searchBar.becomeFirstResponder()
-                self.searchController?.active = true
-        })
+        searchController?.searchBar.becomeFirstResponder()
     }
 
     func hideSearchBar() {
-        UIView.animateWithDuration(0.2, animations: {
-            self.searchController?.searchBar.alpha = 0
-            }, completion: { finished in
-                self.navigationItem.titleView = nil
-                self.navigationItem.leftBarButtonItem = self.searchButton
-                self.navigationItem.rightBarButtonItem = self.locateButton
-                self.searchController?.searchBar.resignFirstResponder()
-                self.searchController?.active = false
-        })
+        navigationItem.titleView = nil
+        navigationItem.leftBarButtonItem = self.searchButton
+        navigationItem.rightBarButtonItem = self.locateButton
+        searchController?.searchBar.resignFirstResponder()
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
