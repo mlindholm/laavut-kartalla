@@ -24,6 +24,13 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
         super.didReceiveMemoryWarning()
     }
 
+    func distanceToLocation(location: CLLocationCoordinate2D) -> Double {
+        let toLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        let distance = currentLocation.distanceFromLocation(toLocation)
+        let distanceKm = (distance/1000).roundToPlaces(1)
+        return distanceKm
+    }
+
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,12 +40,10 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath)
         let location = filteredLocations[indexPath.row]
-        let toLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-        let distance = currentLocation.distanceFromLocation(toLocation)
-        let distanceKm = (distance/1000).roundToPlaces(1)
+        let dist = distanceToLocation(location.coordinate)
 
         cell.textLabel?.text = location.title
-        cell.detailTextLabel?.text = "\(distanceKm) km"
+        cell.detailTextLabel?.text = "\(dist) km"
 
         return cell
     }
@@ -80,10 +85,13 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
                 result = result.intersect(item)
             }
             let sortedResult = result.sort({
-                guard let title1 = $0.title,
-                    let title2 = $1.title else { return false }
-                let compare = title1.localizedCaseInsensitiveCompare(title2) == .OrderedAscending
-                return compare
+//                guard let title1 = $0.title,
+//                    let title2 = $1.title else { return false }
+//                let compare = title1.localizedCaseInsensitiveCompare(title2) == .OrderedAscending
+                let dist1 = distanceToLocation($0.coordinate)
+                let dist2 = distanceToLocation($1.coordinate)
+                let compare2 = dist1 < dist2
+                return compare2
             })
             filteredLocations = Array(sortedResult)
         } else {
