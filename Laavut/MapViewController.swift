@@ -22,6 +22,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var searchController: UISearchController?
     var fetchAllLocationTask: NSURLSessionTask?
     var selectedSearchLocation: Location?
+    var allowLocationAccess: Bool { return CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse }
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var locateButton: UIBarButtonItem!
@@ -141,8 +142,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //MARK: - Actions
 
     @IBAction func locateButtonPressed(sender: AnyObject) {
-        locationManager.startUpdatingLocation()
-        Answers.logCustomEventWithName("Button Pressed", customAttributes: ["Button": "Locate me button"])
+        if allowLocationAccess {
+            locationManager.startUpdatingLocation()
+            Answers.logCustomEventWithName("Button Pressed", customAttributes: ["Button": "Locate me button"])
+        } else {
+            let url = NSURL(string: UIApplicationOpenSettingsURLString)
+            let alert = UIAlertController(title: "Paikannus edellyttää että sallit sijaintipalvelun käytön", message: "Voit sallia sijaintipalveluiden käytön ohjelman asetuksista. Paikkatietojasi käytetään oman sijantisi näyttämiseen.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Älä salli", style: UIAlertActionStyle.Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Asetukset", style: UIAlertActionStyle.Default, handler: { action in
+                UIApplication.sharedApplication().openURL(url!)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     @IBAction func searchButtonPressed(sender: AnyObject) {
