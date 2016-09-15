@@ -9,9 +9,13 @@
 import UIKit
 import MapKit
 
-class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
+class LocationSearchTable: UITableViewController, UISearchResultsUpdating, CLLocationManagerDelegate {
     var currentLocation = CLLocation()
     var filteredLocations = [Location]()
+    var locationAuthorized: Bool {
+        let status = CLLocationManager.authorizationStatus()
+        return status == .AuthorizedWhenInUse || status == .AuthorizedWhenInUse
+    }
 
     @IBOutlet var emptyState: UILabel!
 
@@ -41,9 +45,10 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
         let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath)
         let location = filteredLocations[indexPath.row]
         let dist = distanceToLocation(location.coordinate)
+        let detailString = locationAuthorized ? "\(dist) km" : location.subtitle
 
         cell.textLabel?.text = location.title
-        cell.detailTextLabel?.text = "\(dist) km"
+        cell.detailTextLabel?.text = detailString
 
         return cell
     }
@@ -73,23 +78,40 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
 
         for item in searchTextArray where !item.isEmpty {
             let searchResult = locationsArray.filter { location in
-                let title = location.title!.lowercaseString.containsString(item)
-                return title
+                guard let title = location.title else { return false }
+                guard let subtitleArray = location.subtitle else { return false }
+                guard let subtitle = subtitleArray.componentsSeparatedByString(" ").first else { return false }
+                let titleContains = title.lowercaseString.containsString(item)
+                let subtitleContains = subtitle.lowercaseString.containsString(item)
+                return titleContains || subtitleContains
             }
             searchResults.append(Set(searchResult))
         }
 
         if let first = searchResults.first {
             var result = first
+            var sortedResult: [Location]
+
             for item in searchResults[1..<searchResults.count] {
                 result = result.intersect(item)
             }
-            let sortedResult = result.sort({
-                let dist1 = distanceToLocation($0.coordinate)
-                let dist2 = distanceToLocation($1.coordinate)
-                let compare2 = dist1 < dist2
-                return compare2
-            })
+
+            if locationAuthorized {
+                sortedResult = result.sort({
+                    let dist1 = distanceToLocation($0.coordinate)
+                    let dist2 = distanceToLocation($1.coordinate)
+                    let compare = dist1 < dist2
+                    return compare
+                })
+            } else {
+                sortedResult = result.sort({
+                    guard let title1 = $0.title,
+                        let title2 = $1.title else { return false }
+                    let compare = title1.localizedCaseInsensitiveCompare(title2) == .OrderedAscending
+                    return compare
+                })
+            }
+
             filteredLocations = Array(sortedResult)
         } else {
             filteredLocations = []
