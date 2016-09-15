@@ -45,10 +45,13 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating, CLLoc
         let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath)
         let location = filteredLocations[indexPath.row]
         let dist = distanceToLocation(location.coordinate)
-        let detailString = locationAuthorized ? "\(dist) km" : location.subtitle
 
         cell.textLabel?.text = location.title
-        cell.detailTextLabel?.text = detailString
+
+        if let subtitle = location.subtitle {
+            let detailString = locationAuthorized ? "\(dist) km · \(subtitle)" : subtitle
+            cell.detailTextLabel?.text = detailString
+        }
 
         return cell
     }
