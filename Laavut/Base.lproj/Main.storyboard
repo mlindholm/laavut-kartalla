@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GPJ-rC-KHz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GPJ-rC-KHz">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -121,6 +121,9 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="720" id="ef2-KE-AoN"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -131,7 +134,7 @@
                             <constraint firstAttribute="trailing" secondItem="2yy-ko-FAa" secondAttribute="trailing" id="R5h-me-4YB"/>
                             <constraint firstItem="sJR-1f-vk4" firstAttribute="top" secondItem="2yy-ko-FAa" secondAttribute="bottom" constant="16" id="RK4-lP-biT"/>
                             <constraint firstItem="2yy-ko-FAa" firstAttribute="leading" secondItem="3jM-su-vh1" secondAttribute="leading" id="RQZ-Yk-DP6"/>
-                            <constraint firstAttribute="trailing" secondItem="sJR-1f-vk4" secondAttribute="trailing" constant="16" id="ct7-Mt-BSC"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sJR-1f-vk4" secondAttribute="trailing" constant="16" id="ct7-Mt-BSC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pVs-Vv-DNN">
