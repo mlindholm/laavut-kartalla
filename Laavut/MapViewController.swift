@@ -200,7 +200,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchController = UISearchController(searchResultsController: locationSearchTable)
         searchController?.searchResultsUpdater = locationSearchTable
         searchController?.hidesNavigationBarDuringPresentation = false
-        searchController?.dimsBackgroundDuringPresentation = true
+        searchController?.dimsBackgroundDuringPresentation = false
         searchController?.searchBar.delegate = self
         searchController?.searchBar.autocapitalizationType = .None
         searchController?.searchBar.spellCheckingType = .No
@@ -232,7 +232,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         searchBar.resignFirstResponder()
     }
 
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         hideSearchBar()
     }
 
