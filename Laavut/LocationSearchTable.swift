@@ -12,10 +12,7 @@ import MapKit
 class LocationSearchTable: UITableViewController, UISearchResultsUpdating, CLLocationManagerDelegate {
     var currentLocation = CLLocation()
     var filteredLocations = [Location]()
-    var locationAuthorized: Bool {
-        let status = CLLocationManager.authorizationStatus()
-        return status == .AuthorizedWhenInUse || status == .AuthorizedWhenInUse
-    }
+    var allowLocationAccess: Bool { return CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse }
 
     @IBOutlet var emptyState: UILabel!
 
@@ -49,7 +46,7 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating, CLLoc
         cell.textLabel?.text = location.title
 
         if let subtitle = location.subtitle {
-            let detailString = locationAuthorized ? "\(dist) km · \(subtitle)" : subtitle
+            let detailString = allowLocationAccess ? "\(dist) km · \(subtitle)" : subtitle
             cell.detailTextLabel?.text = detailString
         }
 
@@ -99,7 +96,7 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating, CLLoc
                 result = result.intersect(item)
             }
 
-            if locationAuthorized {
+            if allowLocationAccess {
                 sortedResult = result.sort({
                     let dist1 = distanceToLocation($0.coordinate)
                     let dist2 = distanceToLocation($1.coordinate)
