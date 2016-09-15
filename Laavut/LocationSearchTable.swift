@@ -85,9 +85,6 @@ class LocationSearchTable: UITableViewController, UISearchResultsUpdating {
                 result = result.intersect(item)
             }
             let sortedResult = result.sort({
-//                guard let title1 = $0.title,
-//                    let title2 = $1.title else { return false }
-//                let compare = title1.localizedCaseInsensitiveCompare(title2) == .OrderedAscending
                 let dist1 = distanceToLocation($0.coordinate)
                 let dist2 = distanceToLocation($1.coordinate)
                 let compare2 = dist1 < dist2
